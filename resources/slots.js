@@ -1,4 +1,4 @@
-// ITEM resource: parking slots  {id, name, note}
+// ITEM resource: parking slots  {id, name, note, zoneId}
 const fs = require('fs').promises;
 const path = require('path');
 const config = require('../config');
@@ -55,13 +55,28 @@ async function findById(id) {
   return list.find((r) => r.id === Number(id));
 }
 
-function clean(body) {
+async function clean(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body) ||
       typeof body.name !== 'string' || body.name.trim() === '') {
     throw new HttpError(400, 'name is required');
   }
   const data = { name: body.name.trim() };
   if (body.note !== undefined) data.note = body.note;
+
+  // zoneId is optional, but if given it must point to a real zone
+  if (body.zoneId !== undefined && body.zoneId !== null && body.zoneId !== '') {
+    let zones;
+    try {
+      zones = require('./zones'); // required here to avoid a circular import; zones.js is optional
+    } catch (err) {
+      if (err.code !== 'MODULE_NOT_FOUND') throw err;
+    }
+    if (zones) {
+      const zone = await zones.findById(body.zoneId);
+      if (!zone) throw new HttpError(400, 'zoneId does not match any zone');
+      data.zoneId = zone.id;
+    }
+  }
   return data;
 }
 
@@ -70,7 +85,7 @@ async function handle(req, res, parts, body) {
   if (parts.length === 0) {
     if (req.method === 'GET') return send(res, 200, await load());
     if (req.method === 'POST') {
-      const data = clean(body);
+      const data = await clean(body);
       const list = await load();
       const record = { id: await nextId(list), ...data };
       list.push(record);
@@ -93,7 +108,7 @@ async function handle(req, res, parts, body) {
     if (req.method === 'GET') return send(res, 200, list[index]);
 
     if (req.method === 'PUT') {
-      const data = clean(body);
+      const data = await clean(body);
       list[index] = { id, ...data };
       await save(list);
       bus.emit('updated', { resource: NAME, id });
@@ -109,4 +124,4 @@ async function handle(req, res, parts, body) {
   throw new HttpError(404, 'Not found');
 }
 
-module.exports = { path: '/' + NAME, handle, findById };
+module.exports = { path: '/' + NAME, handle, findById, load };
