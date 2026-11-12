@@ -1,81 +1,3122 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101b2d"><title>ParkEasy — Parking Operations</title>
-<style>
-:root{--navy:#101b2d;--navy2:#17263d;--blue:#3168e0;--blue2:#eaf0ff;--ink:#1c2940;--muted:#7d899d;--line:#e8edf4;--bg:#f4f6fa;--white:#fff;--green:#169b72;--greenbg:#e6f7f0;--red:#d84d5b;--redbg:#fff0f1;--amber:#d99424;--amberbg:#fff5e4;--shadow:0 10px 35px rgba(23,38,61,.055);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-size:14px}button,input,select{font:inherit}button{cursor:pointer}.shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:252px;background:var(--navy);color:#dce5f3;padding:25px 17px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;align-items:center;gap:12px;padding:0 10px 29px}.brand-mark{width:39px;height:39px;border-radius:12px;background:linear-gradient(145deg,#5b8cff,#2853c7);display:grid;place-items:center;color:white;font-size:22px;font-weight:900;box-shadow:0 7px 18px #2d5ed34d}.brand strong{font-size:18px;letter-spacing:-.5px;color:white}.brand small{display:block;color:#8292aa;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;margin-top:2px}.nav-label{font-size:10px;letter-spacing:1.5px;color:#71829c;font-weight:800;padding:12px 13px 8px}.nav{display:grid;gap:5px}.nav button{width:100%;border:0;background:transparent;color:#9eacc1;padding:12px 13px;border-radius:10px;display:flex;align-items:center;gap:13px;text-align:left;font-weight:650;transition:.18s}.nav button:hover{background:#ffffff0d;color:#fff}.nav button.active{background:#2c5cc7;color:#fff;box-shadow:0 6px 16px #0a142755}.nav svg{width:18px;height:18px;flex:none}.side-bottom{margin-top:auto}.server-pill{margin:10px 5px 13px;border:1px solid #2b3b53;border-radius:11px;padding:12px;display:flex;gap:9px;align-items:center;color:#aab8ca;font-size:11px}.dot{width:8px;height:8px;border-radius:50%;background:#2bd19a;box-shadow:0 0 0 4px #2bd19a20}.side-user{border-top:1px solid #29364b;padding:17px 7px 0;display:flex;align-items:center;gap:10px}.avatar{width:34px;height:34px;border-radius:50%;background:#344d75;color:white;display:grid;place-items:center;font-weight:800}.side-user b{display:block;color:#fff;font-size:12px}.side-user small{color:#8292aa;font-size:11px}.main{margin-left:252px;min-height:100vh}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:8}.crumb{font-size:13px;color:var(--muted)}.crumb b{color:var(--ink)}.top-actions{display:flex;align-items:center;gap:12px}.searchbox{position:relative}.searchbox input{width:235px;padding:10px 13px 10px 37px;border:1px solid var(--line);border-radius:9px;background:#f9fafc;outline:none}.searchbox svg{position:absolute;left:12px;top:10px;width:16px;color:#94a0b2}.iconbtn{width:37px;height:37px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#607087;display:grid;place-items:center}.iconbtn svg{width:17px}.content{max-width:1500px;margin:0 auto;padding:30px 34px 55px}.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:23px}.eyebrow{font-size:10px;color:var(--blue);font-weight:850;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}.pagehead h1{margin:0;font-size:26px;letter-spacing:-.9px}.pagehead p{margin:6px 0 0;color:var(--muted);font-size:13px}.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:9px;padding:10px 15px;font-weight:750;font-size:12px;background:var(--blue);color:white;box-shadow:0 5px 12px #3168e022;display:inline-flex;align-items:center;gap:8px}.btn:hover{filter:brightness(.96);transform:translateY(-1px)}.btn.secondary{background:#fff;border:1px solid var(--line);color:#52627a;box-shadow:none}.btn.danger{background:#fff;color:var(--red);border:1px solid #f4d1d4;box-shadow:none}.btn.success{background:var(--green)}.btn.sm{padding:7px 10px;font-size:11px}.btn svg{width:15px;height:15px}.grid{display:grid;gap:17px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:19px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:650}.stat-icon{width:35px;height:35px;border-radius:10px;display:grid;place-items:center;background:var(--blue2);color:var(--blue)}.stat-icon svg{width:18px}.stat strong{display:block;font-size:29px;letter-spacing:-1px;margin:11px 0 4px}.stat-foot{font-size:11px;color:var(--muted)}.stat-foot em{font-style:normal;color:var(--green);font-weight:800}.two-col{grid-template-columns:minmax(0,1.55fr) minmax(290px,.85fr);margin-bottom:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-head h3{margin:0;font-size:14px;letter-spacing:-.2px}.panel-head p{margin:4px 0 0;color:var(--muted);font-size:11px}.panel-body{padding:18px 20px}.link{border:0;background:transparent;color:var(--blue);font-size:11px;font-weight:800}.occupancy{display:flex;align-items:center;gap:22px}.ring{width:142px;height:142px;border-radius:50%;background:conic-gradient(var(--blue) var(--pct),#edf1f6 0);display:grid;place-items:center;flex:none;position:relative}.ring:before{content:"";position:absolute;inset:13px;background:#fff;border-radius:50%}.ring div{position:relative;text-align:center}.ring strong{display:block;font-size:27px;letter-spacing:-1px}.ring small{color:var(--muted);font-size:10px}.legend{display:grid;gap:13px;flex:1}.legend-row{display:flex;justify-content:space-between;align-items:center;font-size:12px}.legend-label{display:flex;align-items:center;gap:8px;color:#66758b}.swatch{width:8px;height:8px;border-radius:3px}.legend-row b{font-size:13px}.chart{height:165px;display:flex;align-items:flex-end;gap:12px;padding:8px 4px 0;border-bottom:1px solid var(--line)}.bar-col{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px}.bar{width:min(28px,70%);border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#6f96f1,#3168e0);min-height:3px}.bar-col small{font-size:10px;color:var(--muted)}.activity{display:grid}.activity-row{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid #f0f2f6}.activity-row:last-child{border:0}.activity-icon{width:32px;height:32px;border-radius:9px;background:var(--greenbg);color:var(--green);display:grid;place-items:center}.activity-icon.red{background:var(--redbg);color:var(--red)}.activity-icon svg{width:15px}.activity-text{min-width:0;flex:1}.activity-text b{font-size:11px;display:block}.activity-text small{font-size:10px;color:var(--muted)}.activity-time{font-size:10px;color:var(--muted);white-space:nowrap}.lot-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;flex-wrap:wrap}.filter-pills{display:flex;gap:6px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#fff;border-radius:20px;padding:7px 12px;font-size:11px;color:#69778c;font-weight:750}.pill.active{background:var(--navy);color:#fff;border-color:var(--navy)}.parking-map{background:linear-gradient(135deg,#17253a,#233750);border-radius:15px;padding:22px;color:#fff;box-shadow:0 12px 30px #18283e20}.map-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.map-head b{font-size:13px}.map-head span{font-size:10px;color:#9daec3}.slot-grid{display:grid;grid-template-columns:repeat(5,minmax(90px,1fr));gap:10px}.slot-tile{min-height:135px;border:1px dashed #75869c;border-radius:10px;background:#ffffff08;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:10px;position:relative}.slot-tile.free{border-color:#3cc99b;background:#1dbb8512}.slot-tile.busy{border-style:solid;border-color:#e36a73;background:#d94e5b20}.slot-tile .car-icon{font-size:30px;line-height:1.2}.slot-tile strong{font-size:12px}.slot-tile small{font-size:10px;color:#afbdd0;text-align:center;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.slot-tile .state{font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.8px;color:#54d7ab}.slot-tile.busy .state{color:#ff8991}.slot-tile button{margin-top:4px;border:1px solid #ffffff35;background:#ffffff14;color:#fff;border-radius:6px;padding:5px 8px;font-size:9px;font-weight:800}.slot-tile button:hover{background:#ffffff2a}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:620px}.table th{text-align:left;padding:12px 16px;background:#f9fafc;color:#8a96a8;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:850}.table td{padding:13px 16px;border-top:1px solid #f0f2f6;font-size:11px;vertical-align:middle}.table tbody tr:hover{background:#fafbfd}.muted{color:var(--muted)}.strong{font-weight:800;color:#26364e}.status{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:5px 9px;font-size:9px;font-weight:850}.status:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}.status.green{background:var(--greenbg);color:#13845f}.status.red{background:var(--redbg);color:#c44350}.status.amber{background:var(--amberbg);color:#b77a18}.table-search{padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#fff;outline:none;font-size:11px;min-width:190px}.table-search:focus{border-color:#9ab2f0}.empty{padding:42px 18px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;color:#34445d;margin-bottom:5px}.zone-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.zone-card{padding:18px;border:1px solid var(--line);border-radius:12px;background:#fff}.zone-card h3{font-size:14px;margin:0 0 5px}.zone-card p{margin:0;color:var(--muted);font-size:11px}.zone-count{font-size:24px;font-weight:850;margin-top:17px}.zone-count small{font-size:10px;color:var(--muted);font-weight:600}.progress{height:6px;border-radius:10px;background:#edf1f6;margin-top:10px;overflow:hidden}.progress span{height:100%;display:block;border-radius:10px;background:var(--blue)}.report-grid{grid-template-columns:1fr 1fr}.report-card{padding:20px}.report-card h3{margin:0;font-size:13px}.report-card p{font-size:11px;color:var(--muted);margin:5px 0 18px}.report-number{font-size:30px;font-weight:850;letter-spacing:-1px}.report-bars{display:grid;gap:13px}.report-bar{display:grid;grid-template-columns:90px 1fr 35px;align-items:center;gap:10px;font-size:10px;color:var(--muted)}.report-bar div{height:8px;background:#edf1f6;border-radius:9px;overflow:hidden}.report-bar span{height:100%;display:block;background:var(--blue);border-radius:9px}.modal{border:0;border-radius:16px;padding:0;width:min(470px,calc(100vw - 28px));box-shadow:0 25px 90px #0b172b55}.modal::backdrop{background:#101b2dcc;backdrop-filter:blur(3px)}.modal-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.modal-head h3{margin:0;font-size:16px}.modal-body{padding:20px 22px}.field{display:block;margin-bottom:14px;font-size:11px;font-weight:800;color:#53627a}.field input,.field select,.field textarea{display:block;width:100%;margin-top:6px;border:1px solid #dfe5ee;border-radius:8px;padding:10px 11px;outline:none;background:white;font-size:12px}.field input:focus,.field select:focus{border-color:#8da9ed;box-shadow:0 0 0 3px #3168e012}.modal-error{color:var(--red);font-size:11px;min-height:17px}.modal-foot{padding:14px 22px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}.toast{position:fixed;bottom:22px;right:25px;background:#14243b;color:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 10px 35px #0b172b40;font-size:12px;font-weight:750;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s;z-index:30}.toast.show{opacity:1;transform:none}.toast.error{background:#b93847}.mobile-menu{display:none}.footer-note{font-size:10px;color:#9aa5b4;text-align:center;padding:20px 0 0}.api-error{padding:15px;background:var(--redbg);border:1px solid #f0c7cc;color:#a53340;border-radius:10px;margin-bottom:16px;font-size:12px}
-@media(max-width:1100px){.sidebar{width:220px}.main{margin-left:220px}.content{padding:25px 22px}.topbar{padding:0 22px}.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.slot-grid{grid-template-columns:repeat(4,minmax(85px,1fr))}}
-@media(max-width:720px){.sidebar{width:0;padding:0;overflow:hidden;transition:.2s}.sidebar.open{width:250px;padding:20px 15px;box-shadow:15px 0 45px #07152a55}.main{margin-left:0}.topbar{height:64px;padding:0 15px}.mobile-menu{display:grid}.searchbox input{width:145px}.content{padding:22px 14px 40px}.pagehead{flex-direction:column}.pagehead h1{font-size:23px}.stats{gap:10px}.stat{padding:14px}.stat strong{font-size:25px}.two-col{gap:12px}.occupancy{gap:14px}.ring{width:115px;height:115px}.ring strong{font-size:23px}.slot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.zone-grid,.report-grid{grid-template-columns:1fr}.top-actions{gap:7px}.activity-time{display:none}}
-@media print{.sidebar,.topbar,.actions,.btn,.link{display:none!important}.main{margin:0}.content{padding:0}.panel,.stat{box-shadow:none;break-inside:avoid}}
-</style>
-</head>
-<body>
-<div class="shell">
-<aside class="sidebar" id="sidebar">
-  <div class="brand"><div class="brand-mark">P</div><div><strong>ParkEasy</strong><small>Parking operations</small></div></div>
-  <div class="nav-label">WORKSPACE</div>
-  <nav class="nav" id="nav">
-    <button data-page="dashboard" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="5" rx="2"/><rect x="13" y="10" width="8" height="11" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/></svg>Dashboard</button>
-    <button data-page="lot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V4h16v16M8 20V8h8v12M2 20h20"/><path d="M10 11h4"/></svg>Live parking lot</button>
-    <div class="nav-label">MANAGEMENT</div>
-    <button data-page="vehicles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 11 1.5-5h11L19 11l2 2v6h-2v-2H5v2H3v-6l2-2Z"/><path d="M6.5 14h.01M17.5 14h.01M7 11h10"/></svg>Vehicles</button>
-    <button data-page="slots"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>Parking slots</button>
-    <button data-page="zones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V7l9-4 9 4v14M3 11h18M8 21v-5h8v5"/></svg>Zones</button>
-    <button data-page="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>Parking history</button>
-    <div class="nav-label">INSIGHTS</div>
-    <button data-page="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h17M8 16v-4M13 16V7M18 16v-7"/></svg>Reports</button>
-  </nav>
-  <div class="side-bottom"><div class="server-pill"><span class="dot"></span><span>System online<br><b style="color:#e6edf7">Local server connected</b></span></div><div class="side-user"><div class="avatar">PA</div><div><b>Parking Administrator</b><small>Management portal</small></div></div></div>
-</aside>
-<section class="main">
-<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="iconbtn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button><div class="crumb">ParkEasy <span style="color:#b5bfce"> / </span> <b id="crumb">Dashboard</b></div></div><div class="top-actions"><div class="searchbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><input id="globalSearch" placeholder="Search vehicles, slots…" aria-label="Search" /></div><button class="iconbtn" id="refreshBtn" title="Refresh data"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9a7 7 0 0 1 11.8-2L20 12M4 12l2.7 5a7 7 0 0 0 11.8-2"/></svg></button></div></header>
-<main class="content" id="view"><div class="empty">Loading parking operations…</div></main>
-</section>
-</div>
-<dialog class="modal" id="modal"><form id="modalForm"><div class="modal-head"><h3 id="modalTitle">Add record</h3><button type="button" class="iconbtn" id="modalClose">×</button></div><div class="modal-body" id="modalFields"></div><div class="modal-error" id="modalError" style="padding:0 22px"></div><div class="modal-foot"><button type="button" class="btn secondary" id="modalCancel">Cancel</button><button class="btn" id="modalSubmit">Save record</button></div></form></dialog>
-<div class="toast" id="toast" role="status"></div>
-<script>
-'use strict';
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const state={slots:[],vehicles:[],parkings:[],zones:[],hasZones:true,page:'dashboard',filter:'all',query:'',online:true};
-const api=async(method,url,body)=>{let r;try{r=await fetch(url,{method,headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});}catch(e){throw new Error('Cannot connect to the server. Please run npm start.')}let d;try{d=await r.json()}catch(e){d={}}if(!r.ok)throw new Error(d.error||`Request failed (${r.status})`);return d};
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const date=v=>v?new Date(v).toLocaleString(undefined,{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
-const timeAgo=v=>{if(!v)return '';const m=Math.max(0,Math.floor((Date.now()-new Date(v))/60000));if(m<60)return `${m} min ago`;const h=Math.floor(m/60);if(h<24)return `${h} hr ago`;return `${Math.floor(h/24)} days ago`};
-const active=p=>p.endedAt===null;
-const currentForSlot=id=>state.parkings.find(p=>p.itemId===id&&active(p));
-const vehicle=id=>state.vehicles.find(v=>v.id===id);
-const slot=id=>state.slots.find(s=>s.id===id);
-const parkedVehicles=()=>new Set(state.parkings.filter(active).map(p=>p.personId));
-const fmtMoney=n=>'$'+Number(n||0).toFixed(2);
-let toastTimer;
-function toast(message,error=false){const el=$('#toast');el.textContent=message;el.className='toast show'+(error?' error':'');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='toast',2800)}
-async function load(){try{const root=await api('GET','/');state.hasZones=root.resources.includes('/zones');const [slots,vehicles,parkings,zones]=await Promise.all([api('GET','/slots'),api('GET','/vehicles'),api('GET','/parkings'),state.hasZones?api('GET','/zones'):Promise.resolve([])]);Object.assign(state,{slots,vehicles,parkings,zones,online:true});}catch(e){state.online=false;state.error=e.message}render()}
-function stats(){const total=state.slots.length,used=state.slots.filter(s=>currentForSlot(s.id)).length;return{total,used,free:total-used,rate:total?Math.round(used/total*100):0,vehicles:state.vehicles.length,active:state.parkings.filter(active).length}}
-function pageHead(kicker,title,desc,actions=''){return `<div class="pagehead"><div><div class="eyebrow">${kicker}</div><h1>${title}</h1><p>${desc}</p></div><div class="actions">${actions}</div></div>`}
-function statCard(label,value,sub,icon,color='blue'){const bg=color==='green'?'var(--greenbg)':color==='red'?'var(--redbg)':color==='amber'?'var(--amberbg)':'var(--blue2)',fg=color==='green'?'var(--green)':color==='red'?'var(--red)':color==='amber'?'var(--amber)':'var(--blue)';return `<article class="stat"><div class="stat-top"><span>${label}</span><span class="stat-icon" style="background:${bg};color:${fg}">${icon}</span></div><strong>${value}</strong><div class="stat-foot">${sub}</div></article>`}
-const ico={slot:'▦',car:'▰',clock:'◷',check:'✓'};
-function recentRows(limit=5){return [...state.parkings].sort((a,b)=>new Date(b.startedAt)-new Date(a.startedAt)).slice(0,limit).map(p=>{const s=slot(p.itemId),v=vehicle(p.personId);return `<div class="activity-row"><div class="activity-icon ${p.endedAt?'red':''}">${p.endedAt?'↙':'↗'}</div><div class="activity-text"><b>${esc(v?.name||'Unknown vehicle')} · ${esc(s?.name||'Removed slot')}</b><small>${p.endedAt?'Parking session completed':'Parking session started'}</small></div><div class="activity-time">${timeAgo(p.endedAt||p.startedAt)}</div></div>`}).join('')||'<div class="empty">No parking activity yet.</div>'}
-function dashboard(){const s=stats(),occupancy=s.total?Math.round(s.used/s.total*100):0;const days=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(6-i));return d});const daily=days.map(d=>state.parkings.filter(p=>{const x=new Date(p.startedAt);return x.toDateString()===d.toDateString()}).length);const max=Math.max(1,...daily);return `${pageHead('OVERVIEW','Good day, Administrator','Here is what is happening at your parking facility right now.',`${state.slots.length===0&&state.vehicles.length===0?'<button class="btn secondary" data-action="demo-data">＋ Load demo data</button>':''}<button class="btn secondary" data-action="export">⇩ Export data</button><button class="btn" data-action="new-parking">＋ New parking</button>`)}<section class="grid stats">${statCard('Total parking slots',s.total,'Configured spaces', '▦')}${statCard('Available spaces',s.free,`${s.total?Math.round(s.free/s.total*100):0}% of total capacity`,'✓','green')}${statCard('Occupied spaces',s.used,'Currently parked vehicles','▰','red')}${statCard('Registered vehicles',s.vehicles,'Vehicles in database','◉','amber')}</section><section class="grid two-col"><article class="panel"><div class="panel-head"><div><h3>Parking occupancy</h3><p>Live utilization across all parking slots</p></div><span class="status ${occupancy>=85?'red':'green'}">${occupancy>=85?'High occupancy':'Live status'}</span></div><div class="panel-body"><div class="occupancy"><div class="ring" style="--pct:${occupancy*3.6}deg"><div><strong>${occupancy}%</strong><small>OCCUPIED</small></div></div><div class="legend"><div class="legend-row"><span class="legend-label"><i class="swatch" style="background:var(--blue)"></i>Occupied</span><b>${s.used}</b></div><div class="legend-row"><span class="legend-label"><i class="swatch" style="background:#edf1f6"></i>Available</span><b>${s.free}</b></div><div class="legend-row"><span class="legend-label"><i class="swatch" style="background:var(--amber)"></i>Total capacity</span><b>${s.total}</b></div><button class="link" style="text-align:left;padding:8px 0 0" data-go="lot">View live parking lot →</button></div></div></div></article><article class="panel"><div class="panel-head"><div><h3>Parking activity</h3><p>Sessions started in the last 7 days</p></div><button class="link" data-go="reports">Full report →</button></div><div class="panel-body"><div class="chart">${daily.map((n,i)=>`<div class="bar-col"><div class="bar" title="${n} sessions" style="height:${Math.max(3,n/max*100)}%"></div><small>${days[i].toLocaleDateString(undefined,{weekday:'short'})}</small></div>`).join('')}</div></div></article></section><section class="grid two-col"><article class="panel"><div class="panel-head"><div><h3>Recent parking sessions</h3><p>Latest activity from your parking lot</p></div><button class="link" data-go="history">View all →</button></div><div class="panel-body"><div class="activity">${recentRows(5)}</div></div></article><article class="panel"><div class="panel-head"><div><h3>Facility summary</h3><p>Quick operational overview</p></div></div><div class="panel-body"><div class="legend"><div class="legend-row"><span class="legend-label">Total zones</span><b>${state.zones.length}</b></div><div class="legend-row"><span class="legend-label">Completed sessions</span><b>${state.parkings.filter(p=>!active(p)).length}</b></div><div class="legend-row"><span class="legend-label">Active sessions</span><b>${s.active}</b></div><div class="legend-row"><span class="legend-label">Capacity utilization</span><b>${occupancy}%</b></div></div><div style="margin-top:20px"><button class="btn secondary" style="width:100%;justify-content:center" data-go="vehicles">Manage registered vehicles</button></div></div></article></section><div class="footer-note">ParkEasy Parking Management System · Data is stored locally on your Node.js server</div>`}
-function liveLot(){const s=stats();return `${pageHead('OPERATIONS','Live parking lot','Monitor every parking bay and manage vehicle entry and exit.',`<button class="btn secondary" data-action="add-slot">＋ Add slot</button><button class="btn" data-action="new-parking">＋ New parking</button>`)}<div class="lot-toolbar"><div class="filter-pills"><button class="pill ${state.filter==='all'?'active':''}" data-filter="all">All slots (${s.total})</button><button class="pill ${state.filter==='free'?'active':''}" data-filter="free">Available (${s.free})</button><button class="pill ${state.filter==='busy'?'active':''}" data-filter="busy">Occupied (${s.used})</button></div><span class="muted" style="font-size:11px">Updated ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span></div><div class="parking-map"><div class="map-head"><b>MAIN PARKING AREA</b><span>● ${s.free} available &nbsp; ● ${s.used} occupied</span></div><div class="slot-grid">${state.slots.filter(x=>state.filter==='all'||(state.filter==='free'?!currentForSlot(x.id):!!currentForSlot(x.id))).map(x=>{const p=currentForSlot(x.id),v=p&&vehicle(p.personId),z=state.zones.find(zn=>zn.id===x.zoneId);return `<div class="slot-tile ${p?'busy':'free'}"><div class="car-icon">${p?'🚙':'▱'}</div><strong>${esc(x.name)}</strong><small style="color:#8fa0b8">${esc(z?.name||'—')}</small><small>${p?esc(v?.name||'Unknown vehicle'):'Ready for parking'}</small><span class="state">${p?'Occupied':'Available'}</span>${p?`<button data-action="checkout" data-id="${p.id}">Check out vehicle</button>`:`<button data-action="park-slot" data-slot="${x.id}">Assign vehicle</button>`}</div>`}).join('')||'<div class="empty" style="grid-column:1/-1;color:#b9c6d8">No slots match this filter.</div>'}</div></div><div class="grid stats" style="margin-top:17px">${statCard('Capacity',s.total,'Total configured slots','▦')}${statCard('Available',s.free,'Ready for incoming vehicles','✓','green')}${statCard('Occupied',s.used,'Currently in use','▰','red')}${statCard('Utilization',s.rate+'%','Current occupancy rate','◉','amber')}</div>`}
-function badge(p){return p.endedAt?'<span class="status green">Completed</span>':'<span class="status red">Parked now</span>'}
-function tablePanel(headers,rows,empty,search=true){return `<div class="panel"><div class="panel-head"><div><h3>${empty.title||'Records'}</h3><p>${empty.sub||''}</p></div>${search?'<input class="table-search" data-search placeholder="Search records…">':''}</div><div class="table-wrap"><table class="table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}"><div class="empty"><b>${empty.message||'No records found'}</b>${empty.hint||''}</div></td></tr>`}</tbody></table></div></div>`}
-function vehiclesPage(){const rows=state.vehicles.map(v=>`<tr data-search-row="${esc([v.id,v.name,v.phone].join(' ').toLowerCase())}"><td class="muted">VEH-${String(v.id).padStart(4,'0')}</td><td><b class="strong">${esc(v.name)}</b></td><td>${esc(v.phone||'—')}</td><td>${parkedVehicles().has(v.id)?'<span class="status red">Currently parked</span>':'<span class="status green">Not parked</span>'}</td><td><button class="btn secondary sm" data-action="edit" data-kind="vehicles" data-id="${v.id}">Edit</button> <button class="btn danger sm" data-action="delete" data-kind="vehicles" data-id="${v.id}">Delete</button></td></tr>`).join('');return `${pageHead('MANAGEMENT','Vehicle registry','Register and maintain vehicle details for parking operations.',`<button class="btn" data-action="add" data-kind="vehicles">＋ Register vehicle</button>`)}${tablePanel(['Vehicle ID','Vehicle / plate number','Owner phone','Parking status','Actions'],rows,{title:'Registered vehicles',sub:`${state.vehicles.length} vehicles in your database`,message:'No vehicles registered',hint:'Add a vehicle to start a parking session.'})}`}
-function slotsPage(){const rows=state.slots.map(v=>{const zn=state.zones.find(z=>z.id===v.zoneId)?.name;return `<tr data-search-row="${esc([v.id,v.name,v.note,zn].join(' ').toLowerCase())}"><td class="muted">SL-${String(v.id).padStart(4,'0')}</td><td><b class="strong">${esc(v.name)}</b></td><td>${esc(v.note||'—')}</td><td>${esc(zn||'—')}</td><td>${currentForSlot(v.id)?'<span class="status red">Occupied</span>':'<span class="status green">Available</span>'}</td><td><button class="btn secondary sm" data-action="edit" data-kind="slots" data-id="${v.id}">Edit</button> <button class="btn danger sm" data-action="delete" data-kind="slots" data-id="${v.id}">Delete</button></td></tr>`}).join('');return `${pageHead('MANAGEMENT','Parking slots','Create and organize the individual parking spaces in your facility.',`<button class="btn" data-action="add" data-kind="slots">＋ Add parking slot</button>`)}${tablePanel(['Slot ID','Slot name','Description','Zone','Availability','Actions'],rows,{title:'Parking slot directory',sub:`${state.slots.length} parking spaces configured`,message:'No parking slots created',hint:'Add slots to build your parking lot.'})}`}
-function zonesPage(){const rows=state.zones.map(z=>{const ss=state.slots.filter(s=>s.zoneId===z.id);const used=ss.filter(s=>currentForSlot(s.id)).length;return `<article class="zone-card"><div style="display:flex;justify-content:space-between;gap:8px"><div><h3>${esc(z.name)}</h3><p>${esc(z.note||'Parking area')}</p></div><span class="status green">Active</span></div><div class="zone-count">${ss.length}<small> slots</small></div><div class="progress"><span style="width:${ss.length?used/ss.length*100:0}%"></span></div><div style="display:flex;justify-content:space-between;margin-top:8px;color:var(--muted);font-size:10px"><span>${used} occupied</span><span>${ss.length-used} available</span></div><div style="margin-top:15px"><button class="btn secondary sm" data-action="edit" data-kind="zones" data-id="${z.id}">Edit zone</button> <button class="btn danger sm" data-action="delete" data-kind="zones" data-id="${z.id}">Delete</button></div></article>`}).join('');return `${pageHead('MANAGEMENT','Parking zones','Group and organize parking spaces by area or floor.',`<button class="btn" data-action="add" data-kind="zones">＋ Add zone</button>`)}<div class="grid zone-grid">${rows||'<div class="panel empty" style="grid-column:1/-1"><b>No zones created</b>Create zones to organize your facility.</div>'}</div>`}
-function historyPage(){const list=[...state.parkings].sort((a,b)=>new Date(b.startedAt)-new Date(a.startedAt));const rows=list.map(p=>{const v=vehicle(p.personId),s=slot(p.itemId);return `<tr data-search-row="${esc([p.id,v?.name,s?.name,p.endedAt?'completed':'active'].join(' ').toLowerCase())}"><td class="muted">PK-${String(p.id).padStart(4,'0')}</td><td><b class="strong">${esc(v?.name||'Unknown vehicle')}</b></td><td>${esc(s?.name||'Removed slot')}</td><td>${date(p.startedAt)}</td><td>${p.endedAt?date(p.endedAt):'<span class="muted">In progress</span>'}</td><td>${badge(p)}</td><td>${p.endedAt?'':`<button class="btn success sm" data-action="checkout" data-id="${p.id}">Check out</button>`} <button class="btn danger sm" data-action="delete-parking" data-id="${p.id}">Delete</button></td></tr>`}).join('');return `${pageHead('MANAGEMENT','Parking history','Review active and completed parking sessions.',`<button class="btn secondary" data-action="export">⇩ Export CSV</button><button class="btn" data-action="new-parking">＋ New parking</button>`)}${tablePanel(['Session ID','Vehicle','Parking slot','Check-in time','Check-out time','Status','Actions'],rows,{title:'All parking sessions',sub:`${list.length} total records`,message:'No parking sessions yet',hint:'New parking sessions will appear here.'})}`}
-function reportsPage(){const total=state.parkings.length,done=state.parkings.filter(p=>p.endedAt),ongoing=total-done.length;const avg=done.length?Math.round(done.reduce((n,p)=>n+(new Date(p.endedAt)-new Date(p.startedAt))/60000,0)/done.length):0;const hours=[0,0,0,0,0,0];state.parkings.forEach(p=>{const h=new Date(p.startedAt).getHours();hours[Math.min(5,Math.floor(h/4))]++});const max=Math.max(1,...hours);return `${pageHead('INSIGHTS','Reports & analytics','A clear overview of parking activity and facility performance.',`<button class="btn secondary" data-action="export">⇩ Export CSV</button><button class="btn" data-action="print">Print report</button>`)}<div class="grid stats">${statCard('Total sessions',total,'All recorded entries','◷')}${statCard('Completed sessions',done.length,'Vehicles checked out','✓','green')}${statCard('Active sessions',ongoing,'Vehicles currently parked','▰','red')}${statCard('Average stay',avg?avg+' min':'—','Based on completed sessions','⌁','amber')}</div><div class="grid report-grid"><article class="panel report-card"><h3>Parking session status</h3><p>Distribution of all recorded parking sessions</p><div class="report-number">${total?Math.round(done.length/total*100):0}%</div><div class="progress" style="height:10px"><span style="width:${total?done.length/total*100:0}%;background:var(--green)"></span></div><div class="legend" style="margin-top:18px"><div class="legend-row"><span class="legend-label">Completed</span><b>${done.length}</b></div><div class="legend-row"><span class="legend-label">Active</span><b>${ongoing}</b></div></div></article><article class="panel report-card"><h3>Activity by time of day</h3><p>Parking check-ins grouped into four-hour periods</p><div class="report-bars">${hours.map((n,i)=>`<div class="report-bar"><span>${['12 AM–4 AM','4 AM–8 AM','8 AM–12 PM','12 PM–4 PM','4 PM–8 PM','8 PM–12 AM'][i]}</span><div><span style="width:${n/max*100}%"></span></div><b>${n}</b></div>`).join('')}</div></article></div><p class="muted" style="font-size:10px;margin-top:16px">Reports are calculated from the parking session records currently stored in the local JSON database. No payment or revenue data is collected by this project.</p>`}
-function render(){const pages={dashboard,lot:liveLot,vehicles:vehiclesPage,slots:slotsPage,zones:zonesPage,history:historyPage,reports:reportsPage};const labels={dashboard:'Dashboard',lot:'Live parking lot',vehicles:'Vehicles',slots:'Parking slots',zones:'Zones',history:'Parking history',reports:'Reports'};$('#crumb').textContent=labels[state.page];$$('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===state.page));if(!state.online){$('#view').innerHTML=`<div class="api-error"><b>Server connection unavailable.</b><br>${esc(state.error||'Please start the Node.js server and refresh this page.')}</div><button class="btn" data-action="refresh">Retry connection</button>`;return}$('#view').innerHTML=pages[state.page]();}
-function fieldsFor(kind,record){if(kind==='vehicles')return[{key:'name',label:'Vehicle name / plate number',required:true,placeholder:'e.g. Toyota 2A-1234',value:record?.name},{key:'phone',label:'Owner phone number',placeholder:'e.g. 012 345 678',value:record?.phone}];if(kind==='slots')return[{key:'name',label:'Parking slot name',required:true,placeholder:'e.g. A-01',value:record?.name},{key:'note',label:'Description',placeholder:'e.g. Ground floor, near entrance',value:record?.note},{key:'zoneId',label:'Zone',options:state.zones.map(z=>({value:z.id,label:z.name})),value:record?.zoneId}];return[{key:'name',label:'Zone name',required:true,placeholder:'e.g. Zone A',value:record?.name},{key:'note',label:'Description',placeholder:'e.g. First floor',value:record?.note}]}
-function openModal(title,fields,submit){$('#modalTitle').textContent=title;$('#modalError').textContent='';$('#modalFields').innerHTML=fields.map(f=>`<label class="field">${esc(f.label)}${f.options?`<select name="${f.key}" ${f.required?'required':''}><option value="">Select…</option>${f.options.map(o=>`<option value="${esc(o.value)}" ${String(o.value)===String(f.value??'')?'selected':''}>${esc(o.label)}</option>`).join('')}</select>`:`<input name="${f.key}" value="${esc(f.value||'')}" placeholder="${esc(f.placeholder||'')}" ${f.required?'required':''}>`}</label>`).join('');$('#modalForm').onsubmit=async e=>{e.preventDefault();const values=Object.fromEntries(new FormData($('#modalForm')).entries());try{await submit(values);$('#modal').close()}catch(err){$('#modalError').textContent=err.message}};$('#modal').showModal();$('#modalFields').querySelector('input,select')?.focus()}
-function editRecord(kind,id){const rec=id?state[kind].find(x=>x.id===Number(id)):null;openModal((rec?'Edit ':'Add ')+({vehicles:'vehicle',slots:'parking slot',zones:'zone'}[kind]),fieldsFor(kind,rec),async v=>{const body={name:v.name.trim()};const extra=kind==='vehicles'?'phone':'note';if(v[extra]?.trim())body[extra]=v[extra].trim();if(kind==='slots'&&v.zoneId)body.zoneId=Number(v.zoneId);if(rec)await api('PUT',`/${kind}/${id}`,body);else await api('POST',`/${kind}`,body);toast(rec?'Changes saved':'Record added');await load()})}
-function newParking(preSlot){const free=state.slots.filter(s=>!currentForSlot(s.id)),busy=parkedVehicles(),cars=state.vehicles.filter(v=>!busy.has(v.id));if(!free.length)return toast('There are no available parking slots.',true);if(!cars.length)return toast('Register an available vehicle first.',true);openModal('Start a parking session',[{key:'itemId',label:'Select parking slot',required:true,value:preSlot,options:free.map(s=>({value:s.id,label:s.name}))},{key:'personId',label:'Select vehicle',required:true,options:cars.map(v=>({value:v.id,label:v.name}))}],async v=>{await api('POST','/parkings',{itemId:Number(v.itemId),personId:Number(v.personId)});toast('Vehicle checked in successfully');await load()})}
-async function checkout(id){if(!confirm('Confirm vehicle check-out?'))return;await api('PUT',`/parkings/${id}/end`);toast('Vehicle checked out');await load()}
-function exportCsv(){const rows=[['Session ID','Vehicle','Slot','Check in','Check out','Status'],...state.parkings.map(p=>[p.id,vehicle(p.personId)?.name||'',slot(p.itemId)?.name||'',p.startedAt,p.endedAt||'',p.endedAt?'Completed':'Active'])];const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='parkeasy-parking-report.csv';a.click();URL.revokeObjectURL(url);toast('CSV report exported')}
-document.addEventListener('click',async e=>{const nav=e.target.closest('[data-page]');if(nav){state.page=nav.dataset.page;state.filter='all';render();$('#sidebar').classList.remove('open');return}const go=e.target.closest('[data-go]');if(go){state.page=go.dataset.go;render();return}const filter=e.target.closest('[data-filter]');if(filter){state.filter=filter.dataset.filter;render();return}const b=e.target.closest('[data-action]');if(!b)return;const {action,kind,id,slot:slotId}=b.dataset;try{if(action==='add')editRecord(kind);else if(action==='edit')editRecord(kind,id);else if(action==='add-slot')editRecord('slots');else if(action==='new-parking')newParking();else if(action==='park-slot')newParking(Number(slotId));else if(action==='checkout')await checkout(id);else if(action==='delete'){const rec=state[kind].find(x=>x.id===Number(id));if(kind==='slots'&&currentForSlot(Number(id)))throw new Error('This slot is occupied. Check out the vehicle before deleting it.');if(kind==='vehicles'&&parkedVehicles().has(Number(id)))throw new Error('This vehicle is currently parked. Check it out before deleting it.');if(kind==='zones'&&state.slots.some(s=>s.zoneId===Number(id)))throw new Error('This zone still has parking slots. Move or delete them first.');if(!confirm(`Delete ${rec?.name||'this record'}?`))return;await api('DELETE',`/${kind}/${id}`);toast('Record deleted');await load()}else if(action==='delete-parking'){if(!confirm('Delete this parking history record?'))return;await api('DELETE',`/parkings/${id}`);toast('Parking record deleted');await load()}else if(action==='demo-data'){if(state.slots.length||state.vehicles.length)return toast('Demo data can only be loaded into an empty project.',true);if(!confirm('Add example zones, slots, vehicles and parking sessions?'))return;const za=await api('POST','/zones',{name:'Zone A',note:'Ground floor'});const zb=await api('POST','/zones',{name:'Zone B',note:'First floor'});for(const name of ['A-01','A-02','A-03','A-04','A-05','A-06','B-01','B-02','B-03','B-04','B-05','B-06'])await api('POST','/slots',{name,zoneId:name.startsWith('A')?za.id:zb.id});for(const [name,phone] of [['Toyota Camry · 2A-1234','012 345 678'],['Honda Civic · 1B-5521','098 765 432'],['Ford Ranger · 3C-9087','077 112 233'],['Hyundai Tucson · 2B-6688','096 333 221']])await api('POST','/vehicles',{name,phone});await api('POST','/parkings',{itemId:1,personId:1});await api('POST','/parkings',{itemId:7,personId:2});toast('Demo parking data created');await load()}else if(action==='export')exportCsv();else if(action==='print')window.print();else if(action==='refresh')await load()}catch(err){toast(err.message,true)}});
-document.addEventListener('input',e=>{if(e.target.matches('[data-search]')){const q=e.target.value.toLowerCase().trim();$$('[data-search-row]').forEach(r=>r.hidden=!r.dataset.searchRow.includes(q))}});
-$('#globalSearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const q=e.target.value.toLowerCase().trim();if(!q)return;const inVehicles=state.vehicles.some(v=>v.name.toLowerCase().includes(q));const inSlots=state.slots.some(v=>v.name.toLowerCase().includes(q));if(inVehicles||inSlots){state.page=inVehicles?'vehicles':'slots';render();const box=$('[data-search]');if(box){box.value=q;box.dispatchEvent(new Event('input'))}}else toast('No matching vehicle or parking slot found')});
-$('#refreshBtn').addEventListener('click',load);$('#menuBtn').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));$('#modalClose').addEventListener('click',()=>$('#modal').close());$('#modalCancel').addEventListener('click',()=>$('#modal').close());window.addEventListener('keydown',e=>{if(e.key==='Escape')$('#sidebar').classList.remove('open')});load();setInterval(()=>{if(state.online)load()},30000);
-</script>
-</body></html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>ParkEasy · Parking operations</title>
+    <style>
+      :root {
+        --ink: #111113;
+        --mute: #66666f;
+        --line: #d4d4da;
+        --hair: #e8e8ec;
+        --bg: #f7f7f8;
+        --paper: #fff;
+        --accent: #ff4f00;
+        --accent-text: #c43c00;
+        font-family:
+          "Helvetica Neue", Helvetica, Arial, "Nimbus Sans", "Noto Sans Khmer",
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-size: 14px;
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      :focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 2px;
+      }
+      .shell {
+        min-height: 100vh;
+      }
+
+      /* sidebar */
+      .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 236px;
+        background: var(--paper);
+        border-right: 1px solid var(--line);
+        padding: 24px 0 20px;
+        display: flex;
+        flex-direction: column;
+        z-index: 10;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 22px 22px;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        background: var(--ink);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        font-size: 19px;
+      }
+      .brand strong {
+        display: block;
+        font-size: 17px;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      .brand small {
+        display: block;
+        color: var(--mute);
+        font-size: 11px;
+        margin-top: 2px;
+      }
+      .nav-label {
+        font-size: 11px;
+        color: var(--mute);
+        padding: 18px 22px 6px;
+      }
+      .nav {
+        display: grid;
+      }
+      .nav button {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        border-left: 3px solid transparent;
+        padding: 10px 22px 10px 19px;
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        text-align: left;
+        font-weight: 500;
+        transition: background 0.15s;
+      }
+      .nav button .no {
+        font-size: 11px;
+        color: var(--mute);
+        width: 18px;
+        flex: none;
+      }
+      .nav button:hover {
+        background: var(--bg);
+      }
+      .nav button.active {
+        border-left-color: var(--accent);
+        font-weight: 700;
+        background: var(--bg);
+      }
+      .side-bottom {
+        margin-top: auto;
+      }
+      .server-pill {
+        margin: 0 22px 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--hair);
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--mute);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+      .server-pill b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .dot {
+        width: 9px;
+        height: 9px;
+        background: var(--ink);
+        margin-top: 4px;
+        flex: none;
+      }
+      .dot.off {
+        background: transparent;
+        border: 1.5px solid var(--accent-text);
+      }
+      .side-user {
+        border-top: 1px solid var(--line);
+        padding: 16px 22px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        font-size: 11px;
+      }
+      .side-user b {
+        display: block;
+        font-size: 12px;
+      }
+      .side-user small {
+        color: var(--mute);
+        font-size: 11px;
+      }
+
+      /* topbar */
+      .main {
+        margin-left: 236px;
+        min-height: 100vh;
+      }
+      .topbar {
+        height: 64px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        position: sticky;
+        top: 0;
+        z-index: 8;
+      }
+      .crumb {
+        font-size: 13px;
+        color: var(--mute);
+      }
+      .crumb b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .searchbox {
+        position: relative;
+      }
+      .searchbox input {
+        width: 250px;
+        padding: 9px 12px 9px 36px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        background: var(--paper);
+        outline: none;
+        font-size: 13px;
+      }
+      .searchbox input:focus {
+        border-color: var(--ink);
+      }
+      .searchbox svg {
+        position: absolute;
+        left: 11px;
+        top: 10px;
+        color: var(--mute);
+      }
+      .iconbtn {
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        background: var(--paper);
+        display: grid;
+        place-items: center;
+        transition: border-color 0.15s;
+      }
+      .iconbtn:hover {
+        border-color: var(--ink);
+      }
+
+      /* page */
+      .content {
+        max-width: 1480px;
+        margin: 0 auto;
+        padding: 36px 40px 56px;
+      }
+      .pagehead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 20px;
+        padding-bottom: 24px;
+        margin-bottom: 28px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .folio {
+        font-size: 12px;
+        color: var(--mute);
+        margin-bottom: 14px;
+        font-weight: 600;
+      }
+      .pagehead h1 {
+        margin: 0;
+        font-size: 42px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        font-weight: 700;
+      }
+      .pagehead p {
+        margin: 10px 0 0;
+        color: var(--mute);
+        font-size: 14px;
+        max-width: 52ch;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      /* buttons */
+      .btn {
+        border: 1px solid var(--ink);
+        border-radius: 0;
+        padding: 10px 16px;
+        font-weight: 600;
+        font-size: 13px;
+        background: var(--ink);
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--ink);
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+      .btn.secondary,
+      .btn.success {
+        background: var(--paper);
+        color: var(--ink);
+        border-color: var(--line);
+      }
+      .btn.success {
+        border-color: var(--ink);
+      }
+      .btn.secondary:hover {
+        border-color: var(--ink);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .btn.success:hover {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .btn.danger {
+        background: var(--paper);
+        color: var(--accent-text);
+        border-color: var(--line);
+      }
+      .btn.danger:hover {
+        border-color: var(--accent-text);
+        background: var(--paper);
+        color: var(--accent-text);
+      }
+      .btn.sm {
+        padding: 6px 11px;
+        font-size: 12px;
+      }
+      .link {
+        border: 0;
+        background: none;
+        padding: 0;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background-image: linear-gradient(currentColor, currentColor);
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0 1px;
+        transition: background-size 0.2s;
+      }
+      .link:hover {
+        background-size: 100% 1px;
+      }
+
+      /* markers */
+      .mk {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border: 1.5px solid var(--ink);
+        flex: none;
+      }
+      .mk.busy {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .mk.ink {
+        background: var(--ink);
+      }
+
+      /* stats */
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 2px solid var(--ink);
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 24px;
+      }
+      .stat {
+        padding: 16px 22px 22px;
+        border-left: 1px solid var(--line);
+      }
+      .stat:first-child {
+        border-left: 0;
+      }
+      .stat-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--mute);
+        font-weight: 600;
+        min-height: 12px;
+      }
+      .stat strong {
+        display: block;
+        font-size: 64px;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+        margin: 26px 0 10px;
+      }
+      .stat-foot {
+        font-size: 12px;
+        color: var(--mute);
+      }
+
+      /* panels */
+      .two-col {
+        grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
+        margin-bottom: 20px;
+      }
+      .panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        overflow: hidden;
+      }
+      .panel-head {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--hair);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .panel-head h3 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .panel-head p {
+        margin: 3px 0 0;
+        color: var(--mute);
+        font-size: 12px;
+      }
+      .panel-body {
+        padding: 20px;
+      }
+      .occ {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .occ-num {
+        font-size: 104px;
+        line-height: 0.85;
+        letter-spacing: -0.07em;
+        font-weight: 700;
+        flex: none;
+      }
+      .occ-num small {
+        font-size: 36px;
+        letter-spacing: -0.03em;
+        margin-left: 4px;
+        font-weight: 600;
+      }
+      .occ-side {
+        flex: 1;
+        min-width: 0;
+      }
+      .segs {
+        display: flex;
+        gap: 3px;
+      }
+      .seg {
+        flex: 1;
+        height: 52px;
+        background: var(--hair);
+        min-width: 2px;
+      }
+      .seg.on {
+        background: var(--accent);
+      }
+      .occ-legend {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .occ-legend span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .occ-legend b {
+        color: var(--ink);
+        font-size: 14px;
+      }
+      .kv {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--hair);
+        font-size: 13px;
+      }
+      .kv:last-of-type {
+        border-bottom: 0;
+      }
+      .kv span {
+        color: var(--mute);
+      }
+      .kv b {
+        font-weight: 700;
+      }
+      .chart {
+        height: 176px;
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .bar-col {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .bar-col .val {
+        font-size: 11px;
+        font-weight: 700;
+        text-align: left;
+      }
+      .bar {
+        background: var(--ink);
+        min-height: 2px;
+      }
+      .bar-col.today .bar {
+        background: var(--accent);
+      }
+      .days {
+        display: flex;
+        gap: 10px;
+        padding-top: 8px;
+      }
+      .days small {
+        flex: 1;
+        font-size: 11px;
+        color: var(--mute);
+      }
+      .activity-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--hair);
+      }
+      .activity-row:last-child {
+        border: 0;
+      }
+      .activity-text {
+        min-width: 0;
+        flex: 1;
+      }
+      .activity-text b {
+        font-size: 13px;
+        display: block;
+        font-weight: 600;
+      }
+      .activity-text small {
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .activity-time {
+        font-size: 12px;
+        color: var(--mute);
+        white-space: nowrap;
+      }
+
+      /* live lot */
+      .lot-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .filter-pills {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        border: 1px solid var(--line);
+        background: var(--paper);
+        padding: 8px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        transition: border-color 0.15s;
+      }
+      .pill:hover {
+        border-color: var(--ink);
+      }
+      .pill.active {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .parking-map {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-top: 2px solid var(--ink);
+      }
+      .map-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--line);
+        flex-wrap: wrap;
+      }
+      .map-head b {
+        font-size: 14px;
+      }
+      .map-head span {
+        display: inline-flex;
+        gap: 18px;
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .map-head span i {
+        margin-right: 7px;
+        vertical-align: -1px;
+      }
+      .slot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+      }
+      .slot-tile {
+        min-height: 176px;
+        padding: 14px 16px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        margin: 0 -1px -1px 0;
+        background: var(--paper);
+        transition: background 0.15s;
+      }
+      .slot-tile.free:hover {
+        background: var(--bg);
+      }
+      .slot-tile.busy {
+        background: var(--accent);
+        border-color: rgba(17, 17, 19, 0.35);
+      }
+      .tile-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 11px;
+      }
+      .tile-top span {
+        color: var(--mute);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .slot-tile.busy .tile-top span {
+        color: rgba(17, 17, 19, 0.75);
+      }
+      .tile-top b {
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .tile-name {
+        font-size: 42px;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+        overflow-wrap: anywhere;
+      }
+      .tile-foot {
+        display: grid;
+        gap: 8px;
+        font-size: 12px;
+      }
+      .tile-foot span {
+        color: var(--mute);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .slot-tile.busy .tile-foot span {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .tile-foot button {
+        justify-self: start;
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        padding: 6px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .tile-foot button:hover {
+        background: var(--ink);
+        color: #fff;
+      }
+      .tile-foot button:active {
+        transform: translateY(1px);
+      }
+
+      /* tables */
+      .table-wrap {
+        overflow: auto;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+      }
+      .table th {
+        text-align: left;
+        padding: 12px 18px;
+        background: var(--paper);
+        color: var(--mute);
+        font-size: 11px;
+        font-weight: 600;
+        border-bottom: 1px solid var(--ink);
+      }
+      .table td {
+        padding: 14px 18px;
+        border-top: 1px solid var(--hair);
+        font-size: 13px;
+        vertical-align: middle;
+      }
+      .table tbody tr:first-child td {
+        border-top: 0;
+      }
+      .table tbody tr:hover {
+        background: var(--bg);
+      }
+      .muted {
+        color: var(--mute);
+      }
+      .strong {
+        font-weight: 700;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .status:before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border: 1.5px solid var(--ink);
+        flex: none;
+      }
+      .status.busy:before {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .status.ink:before {
+        background: var(--ink);
+      }
+      .table-search {
+        padding: 8px 11px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        background: var(--paper);
+        outline: none;
+        font-size: 13px;
+        min-width: 210px;
+      }
+      .table-search:focus {
+        border-color: var(--ink);
+      }
+      .empty {
+        padding: 44px 18px;
+        text-align: center;
+        color: var(--mute);
+        font-size: 13px;
+      }
+      .empty b {
+        display: block;
+        color: var(--ink);
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      /* zones & reports */
+      .zone-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .zone-card {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-top: 2px solid var(--ink);
+        background: var(--paper);
+      }
+      .zone-card h3 {
+        font-size: 15px;
+        margin: 0 0 3px;
+        font-weight: 700;
+      }
+      .zone-card p {
+        margin: 0;
+        color: var(--mute);
+        font-size: 12px;
+      }
+      .zone-count {
+        font-size: 52px;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        font-weight: 700;
+        margin-top: 22px;
+      }
+      .zone-count small {
+        font-size: 12px;
+        color: var(--mute);
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-left: 6px;
+      }
+      .progress {
+        height: 8px;
+        background: var(--hair);
+        margin-top: 14px;
+      }
+      .progress span {
+        height: 100%;
+        display: block;
+        background: var(--accent);
+      }
+      .report-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .report-card {
+        padding: 22px;
+      }
+      .report-card h3 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .report-card p {
+        font-size: 12px;
+        color: var(--mute);
+        margin: 4px 0 20px;
+      }
+      .report-number {
+        font-size: 64px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        margin-bottom: 14px;
+      }
+      .report-bars {
+        display: grid;
+        gap: 12px;
+      }
+      .report-bar {
+        display: grid;
+        grid-template-columns: 96px 1fr 30px;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        color: var(--mute);
+      }
+      .report-bar div {
+        height: 10px;
+        background: var(--hair);
+      }
+      .report-bar div span {
+        height: 100%;
+        display: block;
+        background: var(--ink);
+      }
+      .report-bar b {
+        color: var(--ink);
+        text-align: right;
+      }
+
+      /* modal, toast */
+      .modal {
+        border: 1px solid var(--ink);
+        border-radius: 0;
+        padding: 0;
+        width: min(470px, calc(100vw - 28px));
+        box-shadow: none;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .modal::backdrop {
+        background: rgba(17, 17, 19, 0.55);
+      }
+      .modal-head {
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-head h3 {
+        margin: 0;
+        font-size: 17px;
+        letter-spacing: -0.02em;
+      }
+      .modal-body {
+        padding: 20px 22px 6px;
+      }
+      .field {
+        display: block;
+        margin-bottom: 14px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        display: block;
+        width: 100%;
+        margin-top: 6px;
+        border: 1px solid var(--line);
+        border-radius: 0;
+        padding: 10px 11px;
+        outline: none;
+        background: var(--paper);
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .field input:focus,
+      .field select:focus {
+        border-color: var(--ink);
+      }
+      .modal-error {
+        color: var(--accent-text);
+        font-size: 12px;
+        min-height: 18px;
+        font-weight: 600;
+      }
+      .modal-foot {
+        padding: 14px 22px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--ink);
+        color: #fff;
+        padding: 12px 16px;
+        border-left: 4px solid var(--accent);
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0;
+        transform: translateY(8px);
+        pointer-events: none;
+        transition: 0.2s;
+        z-index: 30;
+        max-width: calc(100vw - 48px);
+      }
+      .toast.show {
+        opacity: 1;
+        transform: none;
+      }
+      .toast.error {
+        background: var(--accent-text);
+        border-left-color: var(--ink);
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .footer-note {
+        font-size: 11px;
+        color: var(--mute);
+        padding: 28px 0 0;
+        border-top: 1px solid var(--line);
+        margin-top: 36px;
+      }
+      .api-error {
+        padding: 16px;
+        background: var(--paper);
+        border: 1px solid var(--accent-text);
+        border-left-width: 4px;
+        color: var(--ink);
+        margin-bottom: 16px;
+        font-size: 13px;
+      }
+
+      @media (max-width: 1100px) {
+        .sidebar {
+          width: 208px;
+        }
+        .main {
+          margin-left: 208px;
+        }
+        .content {
+          padding: 28px 24px 48px;
+        }
+        .topbar {
+          padding: 0 24px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .stat:nth-child(odd) {
+          border-left: 0;
+        }
+        .stat:nth-child(n + 3) {
+          border-top: 1px solid var(--line);
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .occ-num {
+          font-size: 84px;
+        }
+      }
+      @media (max-width: 720px) {
+        .sidebar {
+          width: 0;
+          padding: 0;
+          overflow: hidden;
+          border: 0;
+          transition: width 0.2s;
+        }
+        .sidebar.open {
+          width: 260px;
+          padding: 24px 0 20px;
+          border-right: 1px solid var(--line);
+        }
+        .main {
+          margin-left: 0;
+        }
+        .topbar {
+          height: 60px;
+          padding: 0 14px;
+        }
+        .mobile-menu {
+          display: grid;
+        }
+        .searchbox input {
+          width: 150px;
+        }
+        .content {
+          padding: 22px 14px 40px;
+        }
+        .pagehead {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .pagehead h1 {
+          font-size: 32px;
+        }
+        .stat {
+          padding: 14px 14px 18px;
+        }
+        .stat strong {
+          font-size: 44px;
+          margin-top: 18px;
+        }
+        .occ {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 20px;
+        }
+        .occ-num {
+          font-size: 72px;
+        }
+        .zone-grid,
+        .report-grid {
+          grid-template-columns: 1fr;
+        }
+        .report-bar {
+          grid-template-columns: 84px 1fr 26px;
+        }
+        .activity-time {
+          display: none;
+        }
+        .btn {
+          min-height: 44px;
+        }
+        .btn.sm {
+          min-height: 40px;
+        }
+        .iconbtn {
+          width: 44px;
+          height: 44px;
+        }
+        .pill {
+          min-height: 44px;
+        }
+        .tile-foot button {
+          min-height: 40px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+      @media print {
+        .sidebar,
+        .topbar,
+        .actions,
+        .btn,
+        .link {
+          display: none !important;
+        }
+        .main {
+          margin: 0;
+        }
+        .content {
+          padding: 0;
+        }
+        .panel,
+        .stat {
+          break-inside: avoid;
+        }
+      }
+
+      /* ParkEasy visual refresh */
+      :root {
+        --ink: #172033;
+        --mute: #748096;
+        --line: #e3e8f0;
+        --hair: #edf0f5;
+        --bg: #f4f6fa;
+        --paper: #ffffff;
+        --accent: #f47732;
+        --accent-text: #cf5b1d;
+        --nav: #152033;
+        --nav-soft: #202d43;
+        --success: #169b72;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Arial,
+          "Noto Sans Khmer",
+          sans-serif;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid rgba(244, 119, 50, 0.35);
+        outline-offset: 2px;
+      }
+      .shell {
+        min-height: 100vh;
+      }
+
+      /* Navigation */
+      .sidebar {
+        width: 252px;
+        background: var(--nav);
+        border: 0;
+        padding: 26px 0 18px;
+        color: #edf2fa;
+        box-shadow: 8px 0 28px rgba(20, 32, 51, 0.06);
+      }
+      .brand {
+        padding: 0 22px 28px;
+        gap: 12px;
+      }
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 20px;
+        box-shadow: 0 6px 16px rgba(244, 119, 50, 0.24);
+      }
+      .brand strong {
+        font-size: 17px;
+        letter-spacing: -0.03em;
+        color: #fff;
+      }
+      .brand small {
+        font-size: 11px;
+        color: #98a5ba;
+        margin-top: 4px;
+        letter-spacing: 0.02em;
+      }
+      .nav-label {
+        padding: 20px 24px 8px;
+        color: #8795ac;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .nav {
+        gap: 3px;
+      }
+      .nav button {
+        width: calc(100% - 16px);
+        margin: 0 8px;
+        border: 0;
+        border-left: 3px solid transparent;
+        border-radius: 9px;
+        padding: 11px 14px 11px 12px;
+        align-items: center;
+        gap: 12px;
+        color: #c5cede;
+        font-size: 13px;
+        font-weight: 550;
+        transition:
+          background 0.18s ease,
+          color 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .nav button .no {
+        width: 22px;
+        color: #78869d;
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .nav button:hover {
+        background: rgba(255, 255, 255, 0.07);
+        color: #fff;
+      }
+      .nav button.active {
+        background: var(--nav-soft);
+        border-left-color: var(--accent);
+        color: #fff;
+        font-weight: 700;
+      }
+      .nav button.active .no {
+        color: #ffae7c;
+      }
+      .side-bottom {
+        padding: 0 14px;
+      }
+      .server-pill {
+        margin: 0 8px 16px;
+        padding: 16px 9px 0;
+        border-top: 1px solid #2a3850;
+        color: #aab5c7;
+        font-size: 11px;
+      }
+      .server-pill b {
+        color: #f4f7fc;
+        font-weight: 600;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #25bd8c;
+        box-shadow: 0 0 0 4px rgba(37, 189, 140, 0.12);
+      }
+      .dot.off {
+        background: transparent;
+        border: 2px solid #ff9a6c;
+        box-shadow: none;
+      }
+      .side-user {
+        border-top: 1px solid #2a3850;
+        padding: 16px 8px 0;
+        gap: 10px;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #35445c;
+        border-radius: 11px;
+        background: #26354c;
+        color: #fff;
+      }
+      .side-user b {
+        font-size: 11px;
+        color: #f3f6fb;
+      }
+      .side-user small {
+        font-size: 10px;
+        color: #95a3b8;
+      }
+
+      /* Top bar */
+      .main {
+        margin-left: 252px;
+        min-height: 100vh;
+      }
+      .topbar {
+        height: 70px;
+        padding: 0 38px;
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 3px 14px rgba(25, 42, 70, 0.025);
+        backdrop-filter: blur(12px);
+      }
+      .crumb {
+        font-size: 12px;
+        color: #8a95a8;
+      }
+      .crumb b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .top-actions {
+        gap: 9px;
+      }
+      .searchbox input {
+        width: 270px;
+        padding: 10px 13px 10px 38px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #f8f9fc;
+        font-size: 12px;
+        transition:
+          border-color 0.18s,
+          box-shadow 0.18s,
+          background 0.18s;
+      }
+      .searchbox input:focus {
+        border-color: #f2a477;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(244, 119, 50, 0.1);
+      }
+      .searchbox svg {
+        left: 13px;
+        top: 11px;
+        color: #8a95a8;
+      }
+      .iconbtn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        color: #657188;
+        transition: all 0.18s;
+      }
+      .iconbtn:hover {
+        border-color: #cbd3df;
+        background: #f8f9fc;
+        color: var(--ink);
+        transform: translateY(-1px);
+      }
+
+      /* Page heading and actions */
+      .content {
+        max-width: 1540px;
+        padding: 34px 38px 54px;
+      }
+      .pagehead {
+        align-items: center;
+        padding: 0 0 22px;
+        margin: 0 0 24px;
+        border: 0;
+        gap: 24px;
+      }
+      .folio {
+        margin: 0 0 9px;
+        color: var(--accent-text);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .pagehead h1 {
+        font-size: 34px;
+        line-height: 1.12;
+        letter-spacing: -0.045em;
+        color: #172033;
+      }
+      .pagehead p {
+        margin: 8px 0 0;
+        color: #7d879a;
+        font-size: 13px;
+      }
+      .actions {
+        gap: 9px;
+      }
+      .btn {
+        min-height: 40px;
+        padding: 9px 14px;
+        border: 1px solid var(--ink);
+        border-radius: 10px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: 0.005em;
+        box-shadow: 0 2px 4px rgba(23, 32, 51, 0.06);
+        transition:
+          transform 0.18s,
+          box-shadow 0.18s,
+          background 0.18s,
+          border-color 0.18s;
+      }
+      .btn:hover {
+        background: #293750;
+        border-color: #293750;
+        color: #fff;
+        box-shadow: 0 5px 13px rgba(23, 32, 51, 0.12);
+        transform: translateY(-1px);
+      }
+      .btn:active {
+        transform: translateY(0);
+      }
+      .btn.secondary,
+      .btn.success {
+        background: #fff;
+        color: #46536a;
+        border-color: var(--line);
+        box-shadow: none;
+      }
+      .btn.secondary:hover {
+        background: #f8f9fc;
+        border-color: #cbd3df;
+        color: var(--ink);
+        box-shadow: none;
+      }
+      .btn.success {
+        color: #12845f;
+        border-color: #cdeadd;
+        background: #f4fbf7;
+      }
+      .btn.success:hover {
+        background: #e8f7ef;
+        border-color: #9ed9bd;
+        color: #08734f;
+      }
+      .btn.danger {
+        background: #fff;
+        color: #c14c4c;
+        border-color: #f0dada;
+        box-shadow: none;
+      }
+      .btn.danger:hover {
+        background: #fff5f5;
+        border-color: #e7bcbc;
+        color: #a93333;
+      }
+      .btn.sm {
+        min-height: 32px;
+        padding: 6px 10px;
+        font-size: 11px;
+        border-radius: 8px;
+      }
+      .link {
+        color: #52627d;
+        font-size: 11px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .link:hover {
+        color: var(--accent-text);
+      }
+
+      /* Status markers */
+      .mk {
+        width: 8px;
+        height: 8px;
+        border: 0;
+        border-radius: 50%;
+        background: #b8c2d1;
+      }
+      .mk.busy {
+        background: var(--accent);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(244, 119, 50, 0.12);
+      }
+      .mk.ink {
+        background: #65748b;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: #f0f8f4;
+        color: #17835f;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 0.01em;
+      }
+      .status:before {
+        width: 7px;
+        height: 7px;
+        border: 0;
+        border-radius: 50%;
+        background: #1ca876;
+      }
+      .status.busy {
+        background: #fff3eb;
+        color: #c65d23;
+      }
+      .status.busy:before {
+        background: var(--accent);
+        border: 0;
+      }
+      .status.ink {
+        background: #f0f3f8;
+        color: #58667d;
+      }
+      .status.ink:before {
+        background: #7b879a;
+        border: 0;
+      }
+
+      /* Dashboard statistics */
+      .grid {
+        gap: 18px;
+      }
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        background: transparent;
+        border: 0;
+        margin: 0 0 20px;
+      }
+      .stat {
+        position: relative;
+        min-width: 0;
+        padding: 18px 20px 19px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 4px 16px rgba(26, 42, 66, 0.035);
+        overflow: hidden;
+      }
+      .stat:first-child {
+        border-left: 1px solid var(--line);
+      }
+      .stat:nth-child(n) {
+        border-top: 1px solid var(--line);
+      }
+      .stat-top {
+        font-size: 11px;
+        color: #7a869a;
+        font-weight: 650;
+        gap: 8px;
+      }
+      .stat-top .mk {
+        width: 8px;
+        height: 8px;
+      }
+      .stat strong {
+        font-size: 42px;
+        line-height: 1.05;
+        letter-spacing: -0.055em;
+        color: #172033;
+        margin: 16px 0 7px;
+      }
+      .stat-foot {
+        font-size: 11px;
+        color: #929bad;
+      }
+
+      /* Panels and dashboard charts */
+      .two-col {
+        grid-template-columns: minmax(0, 1.45fr) minmax(300px, 1fr);
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 4px 18px rgba(26, 42, 66, 0.035);
+      }
+      .panel-head {
+        padding: 17px 20px;
+        border-bottom: 1px solid #eef1f5;
+      }
+      .panel-head h3 {
+        font-size: 13px;
+        font-weight: 750;
+        letter-spacing: -0.015em;
+        color: #1b2940;
+      }
+      .panel-head p {
+        font-size: 11px;
+        color: #8b96a8;
+        margin-top: 4px;
+      }
+      .panel-body {
+        padding: 20px;
+      }
+      .occ {
+        gap: 26px;
+      }
+      .occ-num {
+        font-size: 82px;
+        letter-spacing: -0.075em;
+        color: #19263c;
+      }
+      .occ-num small {
+        font-size: 28px;
+        color: #7b879b;
+      }
+      .segs {
+        gap: 4px;
+      }
+      .seg {
+        height: 42px;
+        border-radius: 5px;
+        background: #edf1f6;
+      }
+      .seg.on {
+        background: var(--accent);
+      }
+      .occ-legend {
+        gap: 17px;
+        margin-top: 13px;
+        font-size: 11px;
+        color: #7d899c;
+      }
+      .occ-legend span {
+        gap: 7px;
+      }
+      .occ-legend b {
+        font-size: 12px;
+        color: #26344b;
+      }
+      .kv {
+        padding: 11px 0;
+        border-bottom: 1px solid #eef1f5;
+        font-size: 12px;
+      }
+      .kv span {
+        color: #7c889c;
+      }
+      .kv b {
+        color: #26344b;
+        font-size: 12px;
+      }
+      .chart {
+        height: 166px;
+        gap: 12px;
+        border-bottom: 1px solid #e5eaf1;
+        background: repeating-linear-gradient(
+          to top,
+          transparent 0,
+          transparent 40px,
+          #f1f3f7 41px,
+          #f1f3f7 42px
+        );
+      }
+      .bar-col {
+        gap: 7px;
+      }
+      .bar-col .val {
+        font-size: 10px;
+        color: #7c8799;
+      }
+      .bar {
+        border-radius: 5px 5px 2px 2px;
+        background: #b9c4d4;
+        transition: height 0.25s;
+      }
+      .bar-col.today .bar {
+        background: var(--accent);
+      }
+      .days {
+        gap: 12px;
+      }
+      .days small {
+        font-size: 10px;
+        color: #8c97a9;
+      }
+      .activity-row {
+        gap: 12px;
+        padding: 13px 0;
+        border-color: #eff2f6;
+      }
+      .activity-row > .mk {
+        width: 9px;
+        height: 9px;
+      }
+      .activity-text b {
+        font-size: 12px;
+        color: #26344b;
+      }
+      .activity-text small {
+        font-size: 10px;
+        color: #8b96a8;
+      }
+      .activity-time {
+        font-size: 10px;
+        color: #8b96a8;
+      }
+
+      /* Live parking lot */
+      .lot-toolbar {
+        margin-bottom: 14px;
+      }
+      .filter-pills {
+        gap: 7px;
+      }
+      .pill {
+        padding: 8px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: #6d7990;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .pill:hover {
+        border-color: #c6cfdd;
+        background: #fafbfc;
+      }
+      .pill.active {
+        background: #1b2940;
+        color: #fff;
+        border-color: #1b2940;
+        box-shadow: 0 3px 8px rgba(23, 32, 51, 0.12);
+      }
+      .parking-map {
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 4px 18px rgba(26, 42, 66, 0.035);
+        overflow: hidden;
+      }
+      .map-head {
+        padding: 16px 20px;
+        border-bottom: 1px solid #eef1f5;
+      }
+      .map-head b {
+        font-size: 13px;
+        color: #26344b;
+      }
+      .map-head span {
+        gap: 16px;
+        font-size: 11px;
+        color: #7e899c;
+      }
+      .map-head span i {
+        margin-right: 6px;
+      }
+      .slot-grid {
+        padding: 15px;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        background: #fbfcfe;
+      }
+      .slot-tile {
+        min-height: 158px;
+        padding: 14px;
+        border: 1px solid #e5eaf1;
+        border-radius: 12px;
+        margin: 0;
+        background: #fff;
+        box-shadow: 0 2px 7px rgba(26, 42, 66, 0.025);
+        transition:
+          transform 0.18s,
+          box-shadow 0.18s,
+          border-color 0.18s,
+          background 0.18s;
+      }
+      .slot-tile.free:hover {
+        background: #fff;
+        border-color: #cbd7e7;
+        box-shadow: 0 7px 16px rgba(26, 42, 66, 0.07);
+        transform: translateY(-2px);
+      }
+      .slot-tile.busy {
+        background: #fff5ee;
+        border: 1px solid #f8d7c3;
+        box-shadow: none;
+      }
+      .tile-top {
+        align-items: center;
+        font-size: 10px;
+        gap: 7px;
+      }
+      .tile-top span {
+        color: #8792a4;
+      }
+      .slot-tile.busy .tile-top span {
+        color: #a96b4d;
+      }
+      .tile-top b {
+        font-size: 10px;
+        color: #16815e;
+      }
+      .slot-tile.busy .tile-top b {
+        color: #c65d23;
+      }
+      .tile-name {
+        font-size: 35px;
+        letter-spacing: -0.06em;
+        color: #26344b;
+      }
+      .slot-tile.busy .tile-name {
+        color: #a94c1e;
+      }
+      .tile-foot {
+        gap: 9px;
+        font-size: 11px;
+      }
+      .tile-foot span {
+        color: #8994a6;
+      }
+      .slot-tile.busy .tile-foot span {
+        color: #89563b;
+        font-weight: 600;
+      }
+      .tile-foot button {
+        border: 1px solid #dce4ee;
+        border-radius: 7px;
+        background: #fff;
+        color: #47566f;
+        padding: 6px 9px;
+        font-size: 10px;
+        font-weight: 750;
+        transition: all 0.18s;
+      }
+      .tile-foot button:hover {
+        background: #1b2940;
+        border-color: #1b2940;
+        color: #fff;
+      }
+      .slot-tile.busy .tile-foot button {
+        border-color: #f0c3a8;
+        background: #fff9f5;
+        color: #a94c1e;
+      }
+      .slot-tile.busy .tile-foot button:hover {
+        background: #a94c1e;
+        border-color: #a94c1e;
+        color: #fff;
+      }
+
+      /* Tables */
+      .table-wrap {
+        overflow: auto;
+      }
+      .table {
+        min-width: 650px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .table th {
+        padding: 13px 18px;
+        background: #f8f9fc;
+        color: #7d899c;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        border-bottom: 1px solid #e8edf3;
+      }
+      .table td {
+        padding: 14px 18px;
+        border-top: 1px solid #eff2f6;
+        font-size: 12px;
+        color: #526078;
+      }
+      .table td b.strong {
+        color: #26344b;
+        font-weight: 700;
+      }
+      .table tbody tr:first-child td {
+        border-top: 0;
+      }
+      .table tbody tr:hover {
+        background: #fafbfe;
+      }
+      .table .muted {
+        color: #8b96a8;
+      }
+      .table-search {
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fafbfc;
+        font-size: 11px;
+        min-width: 210px;
+      }
+      .table-search:focus {
+        border-color: #e9a47b;
+        box-shadow: 0 0 0 3px rgba(244, 119, 50, 0.1);
+      }
+      .empty {
+        padding: 42px 18px;
+        color: #8a95a7;
+        font-size: 12px;
+      }
+      .empty b {
+        color: #34425a;
+        font-size: 13px;
+      }
+
+      /* Zones and reports */
+      .zone-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .zone-card {
+        padding: 19px;
+        border: 1px solid var(--line);
+        border-top: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 4px 16px rgba(26, 42, 66, 0.035);
+      }
+      .zone-card h3 {
+        font-size: 14px;
+        color: #25334a;
+      }
+      .zone-card p {
+        font-size: 11px;
+        color: #8b96a8;
+      }
+      .zone-count {
+        font-size: 43px;
+        color: #1d2b42;
+        letter-spacing: -0.06em;
+        margin-top: 20px;
+      }
+      .zone-count small {
+        font-size: 11px;
+        color: #8994a6;
+      }
+      .progress {
+        height: 7px;
+        border-radius: 999px;
+        background: #edf1f6;
+        overflow: hidden;
+      }
+      .progress span {
+        border-radius: 999px;
+        background: var(--accent);
+      }
+      .report-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .report-card {
+        padding: 21px;
+      }
+      .report-card h3 {
+        font-size: 13px;
+        color: #25334a;
+      }
+      .report-card p {
+        font-size: 11px;
+        color: #8a95a7;
+        margin: 5px 0 18px;
+      }
+      .report-number {
+        font-size: 54px;
+        color: #1d2b42;
+        letter-spacing: -0.06em;
+      }
+      .report-bar {
+        grid-template-columns: 105px 1fr 26px;
+        gap: 10px;
+        font-size: 10px;
+      }
+      .report-bar div {
+        height: 8px;
+        border-radius: 99px;
+        background: #edf1f6;
+        overflow: hidden;
+      }
+      .report-bar div span {
+        border-radius: 99px;
+        background: #8290a6;
+      }
+      .report-bar b {
+        color: #35435a;
+      }
+
+      /* Dialogs and feedback */
+      .modal {
+        border: 1px solid #e2e8f0;
+        border-radius: 17px;
+        padding: 0;
+        box-shadow: 0 24px 70px rgba(15, 29, 49, 0.2);
+      }
+      .modal::backdrop {
+        background: rgba(18, 30, 49, 0.48);
+        backdrop-filter: blur(3px);
+      }
+      .modal-head {
+        padding: 18px 22px;
+        border-bottom: 1px solid #edf0f5;
+      }
+      .modal-head h3 {
+        font-size: 16px;
+        color: #1d2b42;
+      }
+      .modal-body {
+        padding: 20px 22px 6px;
+      }
+      .field {
+        margin-bottom: 15px;
+        color: #55627a;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        padding: 11px 12px;
+        border: 1px solid #dfe5ee;
+        border-radius: 9px;
+        background: #fbfcfe;
+        font-size: 13px;
+        color: #24324a;
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: #e9a47b;
+        box-shadow: 0 0 0 3px rgba(244, 119, 50, 0.1);
+      }
+      .modal-error {
+        color: #c14c4c;
+        font-size: 11px;
+      }
+      .modal-foot {
+        padding: 14px 22px;
+        border-top: 1px solid #edf0f5;
+      }
+      .toast {
+        bottom: 22px;
+        right: 22px;
+        padding: 13px 17px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-left: 4px solid var(--accent);
+        border-radius: 10px;
+        background: #17243a;
+        box-shadow: 0 10px 30px rgba(15, 29, 49, 0.2);
+        font-size: 12px;
+      }
+      .toast.error {
+        background: #a83b3b;
+        border-left-color: #f7b4a3;
+      }
+      .api-error {
+        padding: 16px 18px;
+        border: 1px solid #f1c9bd;
+        border-left: 4px solid #d95e3e;
+        border-radius: 12px;
+        background: #fff8f5;
+        color: #7e3e2b;
+      }
+      .footer-note {
+        border-top: 1px solid var(--line);
+        color: #98a2b2;
+        font-size: 10px;
+        margin-top: 30px;
+        padding-top: 20px;
+      }
+
+      @media (max-width: 1100px) {
+        .sidebar {
+          width: 224px;
+        }
+        .main {
+          margin-left: 224px;
+        }
+        .content {
+          padding: 28px 24px 44px;
+        }
+        .topbar {
+          padding: 0 24px;
+        }
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .stat:nth-child(odd) {
+          border-left: 1px solid var(--line);
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .zone-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 720px) {
+        .sidebar {
+          width: 0;
+          padding: 0;
+          overflow: hidden;
+          border: 0;
+        }
+        .sidebar.open {
+          width: 270px;
+          padding: 24px 0 18px;
+          border-right: 1px solid #2b3950;
+          box-shadow: 14px 0 35px rgba(12, 23, 40, 0.22);
+        }
+        .main {
+          margin-left: 0;
+        }
+        .topbar {
+          height: 62px;
+          padding: 0 14px;
+        }
+        .mobile-menu {
+          display: grid;
+        }
+        .searchbox input {
+          width: min(42vw, 190px);
+          padding-right: 8px;
+        }
+        .content {
+          padding: 24px 14px 36px;
+        }
+        .pagehead {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          margin-bottom: 20px;
+          padding-bottom: 0;
+        }
+        .pagehead h1 {
+          font-size: 30px;
+        }
+        .actions {
+          width: 100%;
+        }
+        .actions .btn {
+          flex: 1;
+          justify-content: center;
+        }
+        .stats {
+          gap: 10px;
+          margin-bottom: 16px;
+        }
+        .stat {
+          padding: 14px 13px 15px;
+          border-radius: 12px;
+        }
+        .stat strong {
+          font-size: 35px;
+          margin: 14px 0 6px;
+        }
+        .stat-top {
+          font-size: 10px;
+          align-items: flex-start;
+        }
+        .stat-foot {
+          font-size: 10px;
+        }
+        .panel {
+          border-radius: 13px;
+        }
+        .panel-head {
+          padding: 15px;
+        }
+        .panel-body {
+          padding: 15px;
+        }
+        .occ {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 16px;
+        }
+        .occ-num {
+          font-size: 65px;
+        }
+        .seg {
+          height: 34px;
+        }
+        .occ-legend {
+          gap: 12px;
+        }
+        .zone-grid,
+        .report-grid {
+          grid-template-columns: 1fr;
+        }
+        .activity-time {
+          display: none;
+        }
+        .lot-toolbar {
+          align-items: flex-start;
+        }
+        .filter-pills {
+          width: 100%;
+        }
+        .pill {
+          flex: 1;
+          padding: 9px 10px;
+        }
+        .slot-grid {
+          padding: 10px;
+          gap: 9px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .slot-tile {
+          min-height: 150px;
+          padding: 12px;
+          border-radius: 10px;
+        }
+        .tile-name {
+          font-size: 30px;
+        }
+        .map-head {
+          padding: 14px;
+        }
+        .map-head span {
+          gap: 12px;
+        }
+        .table-search {
+          min-width: 0;
+          width: 100%;
+        }
+        .panel-head:has(.table-search) {
+          align-items: stretch;
+          flex-direction: column;
+        }
+        .report-bar {
+          grid-template-columns: 94px 1fr 24px;
+        }
+        .btn {
+          min-height: 42px;
+        }
+        .btn.sm {
+          min-height: 36px;
+        }
+        .iconbtn {
+          width: 42px;
+          height: 42px;
+        }
+        .modal {
+          max-height: calc(100vh - 24px);
+          overflow: auto;
+        }
+        .toast {
+          left: 14px;
+          right: 14px;
+          bottom: 14px;
+          max-width: none;
+        }
+      }
+      @media (max-width: 390px) {
+        .crumb {
+          font-size: 11px;
+        }
+        .top-actions {
+          gap: 6px;
+        }
+        .searchbox input {
+          width: 128px;
+        }
+        .slot-grid {
+          grid-template-columns: 1fr;
+        }
+        .actions .btn {
+          font-size: 11px;
+          padding: 9px 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+      @media print {
+        .sidebar,
+        .topbar,
+        .actions,
+        .btn,
+        .link {
+          display: none !important;
+        }
+        .main {
+          margin: 0;
+        }
+        .content {
+          padding: 0;
+        }
+        .panel,
+        .stat {
+          break-inside: avoid;
+          box-shadow: none;
+        }
+        body {
+          background: #fff;
+        }
+        .stats {
+          gap: 8px;
+        }
+        .stat {
+          border: 1px solid #ddd !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark">P</div>
+          <div><strong>ParkEasy</strong><small>Parking operations</small></div>
+        </div>
+        <div class="nav-label">Workspace</div>
+        <nav class="nav" id="nav">
+          <button data-page="dashboard" class="active">
+            <span class="no">01</span>Dashboard
+          </button>
+          <button data-page="lot">
+            <span class="no">02</span>Live parking lot
+          </button>
+          <div class="nav-label">Management</div>
+          <button data-page="vehicles">
+            <span class="no">03</span>Vehicles
+          </button>
+          <button data-page="slots">
+            <span class="no">04</span>Parking slots
+          </button>
+          <button data-page="zones"><span class="no">05</span>Zones</button>
+          <button data-page="history">
+            <span class="no">06</span>Parking history
+          </button>
+          <div class="nav-label">Insights</div>
+          <button data-page="reports"><span class="no">07</span>Reports</button>
+        </nav>
+        <div class="side-bottom">
+          <div class="server-pill">
+            <span class="dot" id="serverDot"></span
+            ><span id="serverText"
+              >System online<br /><b>Local server connected</b></span
+            >
+          </div>
+          <div class="side-user">
+            <div class="avatar">PA</div>
+            <div>
+              <b>Parking Administrator</b><small>Management portal</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <section class="main">
+        <header class="topbar">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <button
+              class="iconbtn mobile-menu"
+              id="menuBtn"
+              aria-label="Open menu"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="square"
+              >
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </button>
+            <div class="crumb">
+              ParkEasy <span style="color: #b5b5bd"> / </span>
+              <b id="crumb">Dashboard</b>
+            </div>
+          </div>
+          <div class="top-actions">
+            <div class="searchbox">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="square"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m16 16 4 4" /></svg
+              ><input
+                id="globalSearch"
+                placeholder="Search vehicles, slots"
+                aria-label="Search"
+              />
+            </div>
+            <button
+              class="iconbtn"
+              id="refreshBtn"
+              title="Refresh data"
+              aria-label="Refresh data"
+            >
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="square"
+              >
+                <path d="M20 7v5h-5M4 17v-5h5" />
+                <path
+                  d="M5.5 9a7 7 0 0 1 11.8-2L20 12M4 12l2.7 5a7 7 0 0 0 11.8-2"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <main class="content" id="view">
+          <div class="empty">Loading parking operations…</div>
+        </main>
+      </section>
+    </div>
+    <dialog class="modal" id="modal">
+      <form id="modalForm">
+        <div class="modal-head">
+          <h3 id="modalTitle">Add record</h3>
+          <button
+            type="button"
+            class="iconbtn"
+            id="modalClose"
+            aria-label="Close"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="square"
+            >
+              <path d="M5 5l14 14M19 5 5 19" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body" id="modalFields"></div>
+        <div class="modal-error" id="modalError" style="padding: 0 22px"></div>
+        <div class="modal-foot">
+          <button type="button" class="btn secondary" id="modalCancel">
+            Cancel</button
+          ><button class="btn" id="modalSubmit">Save record</button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status"></div>
+    <script>
+      "use strict";
+      const $ = (s) => document.querySelector(s),
+        $$ = (s) => [...document.querySelectorAll(s)];
+      const state = {
+        slots: [],
+        vehicles: [],
+        parkings: [],
+        zones: [],
+        hasZones: true,
+        page: "dashboard",
+        filter: "all",
+        query: "",
+        online: true,
+      };
+      const api = async (method, url, body) => {
+        let r;
+        try {
+          r = await fetch(url, {
+            method,
+            headers:
+              body === undefined ? {} : { "Content-Type": "application/json" },
+            body: body === undefined ? undefined : JSON.stringify(body),
+          });
+        } catch (e) {
+          throw new Error(
+            "Cannot connect to the server. Please run npm start.",
+          );
+        }
+        let d;
+        try {
+          d = await r.json();
+        } catch (e) {
+          d = {};
+        }
+        if (!r.ok) throw new Error(d.error || `Request failed (${r.status})`);
+        return d;
+      };
+      const esc = (v) =>
+        String(v ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const date = (v) =>
+        v
+          ? new Date(v).toLocaleString(undefined, {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })
+          : "–";
+      const timeAgo = (v) => {
+        if (!v) return "";
+        const m = Math.max(0, Math.floor((Date.now() - new Date(v)) / 60000));
+        if (m < 60) return `${m} min ago`;
+        const h = Math.floor(m / 60);
+        if (h < 24) return `${h} hr ago`;
+        return `${Math.floor(h / 24)} days ago`;
+      };
+      const active = (p) => p.endedAt === null;
+      const currentForSlot = (id) =>
+        state.parkings.find((p) => p.itemId === id && active(p));
+      const vehicle = (id) => state.vehicles.find((v) => v.id === id);
+      const slot = (id) => state.slots.find((s) => s.id === id);
+      const parkedVehicles = () =>
+        new Set(state.parkings.filter(active).map((p) => p.personId));
+      const svg = (d, s = 16) =>
+        `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true">${d}</svg>`;
+      const I = {
+        plus: svg('<path d="M12 5v14M5 12h14"/>'),
+        down: svg('<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>'),
+        print: svg('<path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/>'),
+        arrow: svg('<path d="M5 12h14M13 6l6 6-6 6"/>', 14),
+      };
+      let toastTimer;
+      function toast(message, error = false) {
+        const el = $("#toast");
+        el.textContent = message;
+        el.className = "toast show" + (error ? " error" : "");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => (el.className = "toast"), 2800);
+      }
+      async function load() {
+        try {
+          const root = await api("GET", "/");
+          state.hasZones = root.resources.includes("/zones");
+          const [slots, vehicles, parkings, zones] = await Promise.all([
+            api("GET", "/slots"),
+            api("GET", "/vehicles"),
+            api("GET", "/parkings"),
+            state.hasZones ? api("GET", "/zones") : Promise.resolve([]),
+          ]);
+          Object.assign(state, {
+            slots,
+            vehicles,
+            parkings,
+            zones,
+            online: true,
+          });
+        } catch (e) {
+          state.online = false;
+          state.error = e.message;
+        }
+        render();
+      }
+      function stats() {
+        const total = state.slots.length,
+          used = state.slots.filter((s) => currentForSlot(s.id)).length;
+        return {
+          total,
+          used,
+          free: total - used,
+          rate: total ? Math.round((used / total) * 100) : 0,
+          vehicles: state.vehicles.length,
+          active: state.parkings.filter(active).length,
+        };
+      }
+      function pageHead(folio, title, desc, actions = "") {
+        return `<div class="pagehead"><div><div class="folio">${folio}</div><h1>${title}</h1><p>${desc}</p></div><div class="actions">${actions}</div></div>`;
+      }
+      function statCard(label, value, sub, tone = "") {
+        const mk =
+          tone === "busy"
+            ? '<i class="mk busy"></i>'
+            : tone === "free"
+              ? '<i class="mk"></i>'
+              : "";
+        return `<article class="stat"><div class="stat-top"><span>${label}</span>${mk}</div><strong>${value}</strong><div class="stat-foot">${sub}</div></article>`;
+      }
+      function recentRows(limit = 5) {
+        return (
+          [...state.parkings]
+            .sort((a, b) => new Date(b.startedAt) - new Date(a.startedAt))
+            .slice(0, limit)
+            .map((p) => {
+              const s = slot(p.itemId),
+                v = vehicle(p.personId);
+              return `<div class="activity-row"><i class="mk ${p.endedAt ? "" : "busy"}"></i><div class="activity-text"><b>${esc(v?.name || "Unknown vehicle")} · ${esc(s?.name || "Removed slot")}</b><small>${p.endedAt ? "Parking session completed" : "Parking session started"}</small></div><div class="activity-time">${timeAgo(p.endedAt || p.startedAt)}</div></div>`;
+            })
+            .join("") || '<div class="empty">No parking activity yet.</div>'
+        );
+      }
+      function dashboard() {
+        const s = stats(),
+          occupancy = s.rate;
+        const days = Array.from({ length: 7 }, (_, i) => {
+          const d = new Date();
+          d.setDate(d.getDate() - (6 - i));
+          return d;
+        });
+        const daily = days.map(
+          (d) =>
+            state.parkings.filter((p) => {
+              const x = new Date(p.startedAt);
+              return x.toDateString() === d.toDateString();
+            }).length,
+        );
+        const max = Math.max(1, ...daily);
+        const segs = state.slots
+          .map((x) => {
+            const p = currentForSlot(x.id);
+            return `<span class="seg${p ? " on" : ""}" title="${esc(x.name)}: ${p ? "occupied" : "available"}"></span>`;
+          })
+          .join("");
+        return `${pageHead("01", "Overview", "Current state of the parking facility.", `${state.slots.length === 0 && state.vehicles.length === 0 ? `<button class="btn secondary" data-action="demo-data">${I.plus}Load demo data</button>` : ""}<button class="btn secondary" data-action="export">${I.down}Export data</button><button class="btn" data-action="new-parking">${I.plus}New parking</button>`)}
+<section class="stats">${statCard("Total parking slots", s.total, "Configured spaces")}${statCard("Available spaces", s.free, `${s.total ? Math.round((s.free / s.total) * 100) : 0}% of total capacity`, "free")}${statCard("Occupied spaces", s.used, "Currently parked vehicles", "busy")}${statCard("Registered vehicles", s.vehicles, "Vehicles in database")}</section>
+<section class="grid two-col"><article class="panel"><div class="panel-head"><div><h3>Parking occupancy</h3><p>One block per slot, filled when occupied</p></div><span class="status ${occupancy >= 85 ? "busy" : ""}">${occupancy >= 85 ? "High occupancy" : "Live status"}</span></div><div class="panel-body"><div class="occ"><div class="occ-num">${occupancy}<small>%</small></div><div class="occ-side"><div class="segs">${segs || '<div class="muted">No slots configured yet.</div>'}</div><div class="occ-legend"><span><i class="mk busy"></i>Occupied <b>${s.used}</b></span><span><i class="mk"></i>Available <b>${s.free}</b></span><span>Capacity <b>${s.total}</b></span></div></div></div><div style="margin-top:22px"><button class="link" data-go="lot">View live parking lot ${I.arrow}</button></div></div></article>
+<article class="panel"><div class="panel-head"><div><h3>Parking activity</h3><p>Sessions started in the last 7 days</p></div><button class="link" data-go="reports">Full report ${I.arrow}</button></div><div class="panel-body"><div class="chart">${daily.map((n, i) => `<div class="bar-col${i === 6 ? " today" : ""}"><span class="val">${n}</span><div class="bar" title="${n} sessions" style="height:${Math.max(2, (n / max) * 78)}%"></div></div>`).join("")}</div><div class="days">${days.map((d) => `<small>${d.toLocaleDateString(undefined, { weekday: "short" })}</small>`).join("")}</div></div></article></section>
+<section class="grid two-col"><article class="panel"><div class="panel-head"><div><h3>Recent parking sessions</h3><p>Latest activity from your parking lot</p></div><button class="link" data-go="history">View all ${I.arrow}</button></div><div class="panel-body"><div class="activity">${recentRows(5)}</div></div></article>
+<article class="panel"><div class="panel-head"><div><h3>Facility summary</h3><p>Quick operational overview</p></div></div><div class="panel-body"><div class="kv"><span>Total zones</span><b>${state.zones.length}</b></div><div class="kv"><span>Completed sessions</span><b>${state.parkings.filter((p) => !active(p)).length}</b></div><div class="kv"><span>Active sessions</span><b>${s.active}</b></div><div class="kv"><span>Capacity utilization</span><b>${occupancy}%</b></div><div style="margin-top:20px"><button class="btn secondary" style="width:100%;justify-content:center" data-go="vehicles">Manage registered vehicles</button></div></div></article></section>
+<div class="footer-note">ParkEasy Parking Management System · Data is stored locally on your Node.js server</div>`;
+      }
+      function liveLot() {
+        const s = stats();
+        const list = state.slots.filter(
+          (x) =>
+            state.filter === "all" ||
+            (state.filter === "free"
+              ? !currentForSlot(x.id)
+              : !!currentForSlot(x.id)),
+        );
+        return `${pageHead("02", "Live parking lot", "Monitor every parking bay and manage vehicle entry and exit.", `<button class="btn secondary" data-action="add-slot">${I.plus}Add slot</button><button class="btn" data-action="new-parking">${I.plus}New parking</button>`)}
+<div class="lot-toolbar"><div class="filter-pills"><button class="pill ${state.filter === "all" ? "active" : ""}" data-filter="all">All slots (${s.total})</button><button class="pill ${state.filter === "free" ? "active" : ""}" data-filter="free">Available (${s.free})</button><button class="pill ${state.filter === "busy" ? "active" : ""}" data-filter="busy">Occupied (${s.used})</button></div><span class="muted" style="font-size:12px">Updated ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</span></div>
+<div class="parking-map"><div class="map-head"><b>Main parking area</b><span><em style="font-style:normal"><i class="mk"></i>${s.free} available</em><em style="font-style:normal"><i class="mk busy"></i>${s.used} occupied</em></span></div><div class="slot-grid">${
+          list
+            .map((x) => {
+              const p = currentForSlot(x.id),
+                v = p && vehicle(p.personId),
+                z = state.zones.find((zn) => zn.id === x.zoneId);
+              return `<div class="slot-tile ${p ? "busy" : "free"}"><div class="tile-top"><span>${esc(z?.name || "–")}</span><b>${p ? "Occupied" : "Available"}</b></div><div class="tile-name">${esc(x.name)}</div><div class="tile-foot"><span>${p ? esc(v?.name || "Unknown vehicle") : "Ready for parking"}</span>${p ? `<button data-action="checkout" data-id="${p.id}">Check out vehicle</button>` : `<button data-action="park-slot" data-slot="${x.id}">Assign vehicle</button>`}</div></div>`;
+            })
+            .join("") ||
+          '<div class="empty" style="grid-column:1/-1">No slots match this filter.</div>'
+        }</div></div>
+<div class="stats" style="margin:24px 0 0">${statCard("Capacity", s.total, "Total configured slots")}${statCard("Available", s.free, "Ready for incoming vehicles", "free")}${statCard("Occupied", s.used, "Currently in use", "busy")}${statCard("Utilization", s.rate + "%", "Current occupancy rate")}</div>`;
+      }
+      function badge(p) {
+        return `<span class="status ${p.endedAt ? "" : "busy"}">${p.endedAt ? "Completed" : "Parked now"}</span>`;
+      }
+      function tablePanel(headers, rows, empty, search = true) {
+        return `<div class="panel"><div class="panel-head"><div><h3>${empty.title || "Records"}</h3><p>${empty.sub || ""}</p></div>${search ? '<input class="table-search" data-search placeholder="Search records" aria-label="Search records">' : ""}</div><div class="table-wrap"><table class="table"><thead><tr>${headers.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows || `<tr><td colspan="${headers.length}"><div class="empty"><b>${empty.message || "No records found"}</b>${empty.hint || ""}</div></td></tr>`}</tbody></table></div></div>`;
+      }
+      function vehiclesPage() {
+        const parked = parkedVehicles();
+        const rows = state.vehicles
+          .map(
+            (v) =>
+              `<tr data-search-row="${esc([v.id, v.name, v.phone].join(" ").toLowerCase())}"><td class="muted">VEH-${String(v.id).padStart(4, "0")}</td><td><b class="strong">${esc(v.name)}</b></td><td>${esc(v.phone || "–")}</td><td>${parked.has(v.id) ? '<span class="status busy">Currently parked</span>' : '<span class="status">Not parked</span>'}</td><td><button class="btn secondary sm" data-action="edit" data-kind="vehicles" data-id="${v.id}">Edit</button> <button class="btn danger sm" data-action="delete" data-kind="vehicles" data-id="${v.id}">Delete</button></td></tr>`,
+          )
+          .join("");
+        return `${pageHead("03", "Vehicle registry", "Register and maintain vehicle details for parking operations.", `<button class="btn" data-action="add" data-kind="vehicles">${I.plus}Register vehicle</button>`)}${tablePanel(["Vehicle ID", "Vehicle / plate number", "Owner phone", "Parking status", "Actions"], rows, { title: "Registered vehicles", sub: `${state.vehicles.length} vehicles in your database`, message: "No vehicles registered", hint: "Add a vehicle to start a parking session." })}`;
+      }
+      function slotsPage() {
+        const rows = state.slots
+          .map((v) => {
+            const zn = state.zones.find((z) => z.id === v.zoneId)?.name;
+            return `<tr data-search-row="${esc([v.id, v.name, v.note, zn].join(" ").toLowerCase())}"><td class="muted">SL-${String(v.id).padStart(4, "0")}</td><td><b class="strong">${esc(v.name)}</b></td><td>${esc(v.note || "–")}</td><td>${esc(zn || "–")}</td><td>${currentForSlot(v.id) ? '<span class="status busy">Occupied</span>' : '<span class="status">Available</span>'}</td><td><button class="btn secondary sm" data-action="edit" data-kind="slots" data-id="${v.id}">Edit</button> <button class="btn danger sm" data-action="delete" data-kind="slots" data-id="${v.id}">Delete</button></td></tr>`;
+          })
+          .join("");
+        return `${pageHead("04", "Parking slots", "Create and organize the individual parking spaces in your facility.", `<button class="btn" data-action="add" data-kind="slots">${I.plus}Add parking slot</button>`)}${tablePanel(["Slot ID", "Slot name", "Description", "Zone", "Availability", "Actions"], rows, { title: "Parking slot directory", sub: `${state.slots.length} parking spaces configured`, message: "No parking slots created", hint: "Add slots to build your parking lot." })}`;
+      }
+      function zonesPage() {
+        const rows = state.zones
+          .map((z) => {
+            const ss = state.slots.filter((s) => s.zoneId === z.id);
+            const used = ss.filter((s) => currentForSlot(s.id)).length;
+            return `<article class="zone-card"><div style="display:flex;justify-content:space-between;gap:8px"><div><h3>${esc(z.name)}</h3><p>${esc(z.note || "Parking area")}</p></div><span class="status ink">Active</span></div><div class="zone-count">${ss.length}<small>slots</small></div><div class="progress"><span style="width:${ss.length ? (used / ss.length) * 100 : 0}%"></span></div><div style="display:flex;justify-content:space-between;margin-top:8px;color:var(--mute);font-size:12px"><span>${used} occupied</span><span>${ss.length - used} available</span></div><div style="margin-top:16px"><button class="btn secondary sm" data-action="edit" data-kind="zones" data-id="${z.id}">Edit zone</button> <button class="btn danger sm" data-action="delete" data-kind="zones" data-id="${z.id}">Delete</button></div></article>`;
+          })
+          .join("");
+        return `${pageHead("05", "Parking zones", "Group and organize parking spaces by area or floor.", `<button class="btn" data-action="add" data-kind="zones">${I.plus}Add zone</button>`)}<div class="grid zone-grid">${rows || '<div class="panel empty" style="grid-column:1/-1"><b>No zones created</b>Create zones to organize your facility.</div>'}</div>`;
+      }
+      function historyPage() {
+        const list = [...state.parkings].sort(
+          (a, b) => new Date(b.startedAt) - new Date(a.startedAt),
+        );
+        const rows = list
+          .map((p) => {
+            const v = vehicle(p.personId),
+              s = slot(p.itemId);
+            return `<tr data-search-row="${esc([p.id, v?.name, s?.name, p.endedAt ? "completed" : "active"].join(" ").toLowerCase())}"><td class="muted">PK-${String(p.id).padStart(4, "0")}</td><td><b class="strong">${esc(v?.name || "Unknown vehicle")}</b></td><td>${esc(s?.name || "Removed slot")}</td><td>${date(p.startedAt)}</td><td>${p.endedAt ? date(p.endedAt) : '<span class="muted">In progress</span>'}</td><td>${badge(p)}</td><td>${p.endedAt ? "" : `<button class="btn success sm" data-action="checkout" data-id="${p.id}">Check out</button>`} <button class="btn danger sm" data-action="delete-parking" data-id="${p.id}">Delete</button></td></tr>`;
+          })
+          .join("");
+        return `${pageHead("06", "Parking history", "Review active and completed parking sessions.", `<button class="btn secondary" data-action="export">${I.down}Export CSV</button><button class="btn" data-action="new-parking">${I.plus}New parking</button>`)}${tablePanel(["Session ID", "Vehicle", "Parking slot", "Check-in time", "Check-out time", "Status", "Actions"], rows, { title: "All parking sessions", sub: `${list.length} total records`, message: "No parking sessions yet", hint: "New parking sessions will appear here." })}`;
+      }
+      function reportsPage() {
+        const total = state.parkings.length,
+          done = state.parkings.filter((p) => p.endedAt),
+          ongoing = total - done.length;
+        const avg = done.length
+          ? Math.round(
+              done.reduce(
+                (n, p) =>
+                  n + (new Date(p.endedAt) - new Date(p.startedAt)) / 60000,
+                0,
+              ) / done.length,
+            )
+          : 0;
+        const hours = [0, 0, 0, 0, 0, 0];
+        state.parkings.forEach((p) => {
+          const h = new Date(p.startedAt).getHours();
+          hours[Math.min(5, Math.floor(h / 4))]++;
+        });
+        const max = Math.max(1, ...hours);
+        return `${pageHead("07", "Reports & analytics", "Parking activity and facility performance.", `<button class="btn secondary" data-action="export">${I.down}Export CSV</button><button class="btn" data-action="print">${I.print}Print report</button>`)}<div class="stats">${statCard("Total sessions", total, "All recorded entries")}${statCard("Completed sessions", done.length, "Vehicles checked out", "free")}${statCard("Active sessions", ongoing, "Vehicles currently parked", "busy")}${statCard("Average stay", avg ? avg + " min" : "–", "Based on completed sessions")}</div><div class="grid report-grid"><article class="panel report-card"><h3>Parking session status</h3><p>Share of recorded sessions that are completed</p><div class="report-number">${total ? Math.round((done.length / total) * 100) : 0}%</div><div class="progress" style="height:10px;margin-top:0"><span style="width:${total ? (done.length / total) * 100 : 0}%;background:var(--ink)"></span></div><div style="margin-top:18px"><div class="kv"><span>Completed</span><b>${done.length}</b></div><div class="kv"><span>Active</span><b>${ongoing}</b></div></div></article><article class="panel report-card"><h3>Activity by time of day</h3><p>Check-ins grouped into four-hour periods</p><div class="report-bars">${hours.map((n, i) => `<div class="report-bar"><span>${["12 AM–4 AM", "4 AM–8 AM", "8 AM–12 PM", "12 PM–4 PM", "4 PM–8 PM", "8 PM–12 AM"][i]}</span><div><span style="width:${(n / max) * 100}%"></span></div><b>${n}</b></div>`).join("")}</div></article></div><p class="muted" style="font-size:12px;margin-top:18px">Reports are calculated from the parking session records stored in the local JSON database. No payment or revenue data is collected.</p>`;
+      }
+      function render() {
+        const pages = {
+          dashboard,
+          lot: liveLot,
+          vehicles: vehiclesPage,
+          slots: slotsPage,
+          zones: zonesPage,
+          history: historyPage,
+          reports: reportsPage,
+        };
+        const labels = {
+          dashboard: "Dashboard",
+          lot: "Live parking lot",
+          vehicles: "Vehicles",
+          slots: "Parking slots",
+          zones: "Zones",
+          history: "Parking history",
+          reports: "Reports",
+        };
+        $("#crumb").textContent = labels[state.page];
+        $$("[data-page]").forEach((b) =>
+          b.classList.toggle("active", b.dataset.page === state.page),
+        );
+        $("#serverDot").classList.toggle("off", !state.online);
+        $("#serverText").innerHTML = state.online
+          ? "System online<br><b>Local server connected</b>"
+          : "System offline<br><b>Server unreachable</b>";
+        if (!state.online) {
+          $("#view").innerHTML =
+            `<div class="api-error"><b>Server connection unavailable.</b><br>${esc(state.error || "Please start the Node.js server and refresh this page.")}</div><button class="btn" data-action="refresh">Retry connection</button>`;
+          return;
+        }
+        $("#view").innerHTML = pages[state.page]();
+      }
+      function fieldsFor(kind, record) {
+        if (kind === "vehicles")
+          return [
+            {
+              key: "name",
+              label: "Vehicle name / plate number",
+              required: true,
+              placeholder: "e.g. Toyota 2A-1234",
+              value: record?.name,
+            },
+            {
+              key: "phone",
+              label: "Owner phone number",
+              placeholder: "e.g. 012 345 678",
+              value: record?.phone,
+            },
+          ];
+        if (kind === "slots")
+          return [
+            {
+              key: "name",
+              label: "Parking slot name",
+              required: true,
+              placeholder: "e.g. A-01",
+              value: record?.name,
+            },
+            {
+              key: "note",
+              label: "Description",
+              placeholder: "e.g. Ground floor, near entrance",
+              value: record?.note,
+            },
+            {
+              key: "zoneId",
+              label: "Zone",
+              options: state.zones.map((z) => ({ value: z.id, label: z.name })),
+              value: record?.zoneId,
+            },
+          ];
+        return [
+          {
+            key: "name",
+            label: "Zone name",
+            required: true,
+            placeholder: "e.g. Zone A",
+            value: record?.name,
+          },
+          {
+            key: "note",
+            label: "Description",
+            placeholder: "e.g. First floor",
+            value: record?.note,
+          },
+        ];
+      }
+      function openModal(title, fields, submit) {
+        $("#modalTitle").textContent = title;
+        $("#modalError").textContent = "";
+        $("#modalFields").innerHTML = fields
+          .map(
+            (f) =>
+              `<label class="field">${esc(f.label)}${f.options ? `<select name="${f.key}" ${f.required ? "required" : ""}><option value="">Select…</option>${f.options.map((o) => `<option value="${esc(o.value)}" ${String(o.value) === String(f.value ?? "") ? "selected" : ""}>${esc(o.label)}</option>`).join("")}</select>` : `<input name="${f.key}" value="${esc(f.value || "")}" placeholder="${esc(f.placeholder || "")}" ${f.required ? "required" : ""}>`}</label>`,
+          )
+          .join("");
+        $("#modalForm").onsubmit = async (e) => {
+          e.preventDefault();
+          const values = Object.fromEntries(
+            new FormData($("#modalForm")).entries(),
+          );
+          try {
+            await submit(values);
+            $("#modal").close();
+          } catch (err) {
+            $("#modalError").textContent = err.message;
+          }
+        };
+        $("#modal").showModal();
+        $("#modalFields").querySelector("input,select")?.focus();
+      }
+      function editRecord(kind, id) {
+        const rec = id ? state[kind].find((x) => x.id === Number(id)) : null;
+        openModal(
+          (rec ? "Edit " : "Add ") +
+            { vehicles: "vehicle", slots: "parking slot", zones: "zone" }[kind],
+          fieldsFor(kind, rec),
+          async (v) => {
+            const body = { name: v.name.trim() };
+            const extra = kind === "vehicles" ? "phone" : "note";
+            if (v[extra]?.trim()) body[extra] = v[extra].trim();
+            if (kind === "slots" && v.zoneId) body.zoneId = Number(v.zoneId);
+            if (rec) await api("PUT", `/${kind}/${id}`, body);
+            else await api("POST", `/${kind}`, body);
+            toast(rec ? "Changes saved" : "Record added");
+            await load();
+          },
+        );
+      }
+      function newParking(preSlot) {
+        const free = state.slots.filter((s) => !currentForSlot(s.id)),
+          busy = parkedVehicles(),
+          cars = state.vehicles.filter((v) => !busy.has(v.id));
+        if (!free.length)
+          return toast("There are no available parking slots.", true);
+        if (!cars.length)
+          return toast("Register an available vehicle first.", true);
+        openModal(
+          "Start a parking session",
+          [
+            {
+              key: "itemId",
+              label: "Select parking slot",
+              required: true,
+              value: preSlot,
+              options: free.map((s) => ({ value: s.id, label: s.name })),
+            },
+            {
+              key: "personId",
+              label: "Select vehicle",
+              required: true,
+              options: cars.map((v) => ({ value: v.id, label: v.name })),
+            },
+          ],
+          async (v) => {
+            await api("POST", "/parkings", {
+              itemId: Number(v.itemId),
+              personId: Number(v.personId),
+            });
+            toast("Vehicle checked in successfully");
+            await load();
+          },
+        );
+      }
+      async function checkout(id) {
+        if (!confirm("Confirm vehicle check-out?")) return;
+        await api("PUT", `/parkings/${id}/end`);
+        toast("Vehicle checked out");
+        await load();
+      }
+      function exportCsv() {
+        const rows = [
+          ["Session ID", "Vehicle", "Slot", "Check in", "Check out", "Status"],
+          ...state.parkings.map((p) => [
+            p.id,
+            vehicle(p.personId)?.name || "",
+            slot(p.itemId)?.name || "",
+            p.startedAt,
+            p.endedAt || "",
+            p.endedAt ? "Completed" : "Active",
+          ]),
+        ];
+        const csv = rows
+          .map((r) =>
+            r
+              .map((v) => '"' + String(v ?? "").replace(/"/g, '""') + '"')
+              .join(","),
+          )
+          .join("\n");
+        const blob = new Blob(["\ufeff" + csv], {
+            type: "text/csv;charset=utf-8",
+          }),
+          url = URL.createObjectURL(blob),
+          a = document.createElement("a");
+        a.href = url;
+        a.download = "parkeasy-parking-report.csv";
+        a.click();
+        URL.revokeObjectURL(url);
+        toast("CSV report exported");
+      }
+      document.addEventListener("click", async (e) => {
+        const nav = e.target.closest("[data-page]");
+        if (nav) {
+          state.page = nav.dataset.page;
+          state.filter = "all";
+          render();
+          $("#sidebar").classList.remove("open");
+          return;
+        }
+        const go = e.target.closest("[data-go]");
+        if (go) {
+          state.page = go.dataset.go;
+          render();
+          return;
+        }
+        const filter = e.target.closest("[data-filter]");
+        if (filter) {
+          state.filter = filter.dataset.filter;
+          render();
+          return;
+        }
+        const b = e.target.closest("[data-action]");
+        if (!b) return;
+        const { action, kind, id, slot: slotId } = b.dataset;
+        try {
+          if (action === "add") editRecord(kind);
+          else if (action === "edit") editRecord(kind, id);
+          else if (action === "add-slot") editRecord("slots");
+          else if (action === "new-parking") newParking();
+          else if (action === "park-slot") newParking(Number(slotId));
+          else if (action === "checkout") await checkout(id);
+          else if (action === "delete") {
+            const rec = state[kind].find((x) => x.id === Number(id));
+            if (kind === "slots" && currentForSlot(Number(id)))
+              throw new Error(
+                "This slot is occupied. Check out the vehicle before deleting it.",
+              );
+            if (kind === "vehicles" && parkedVehicles().has(Number(id)))
+              throw new Error(
+                "This vehicle is currently parked. Check it out before deleting it.",
+              );
+            if (
+              kind === "zones" &&
+              state.slots.some((s) => s.zoneId === Number(id))
+            )
+              throw new Error(
+                "This zone still has parking slots. Move or delete them first.",
+              );
+            if (!confirm(`Delete ${rec?.name || "this record"}?`)) return;
+            await api("DELETE", `/${kind}/${id}`);
+            toast("Record deleted");
+            await load();
+          } else if (action === "delete-parking") {
+            if (!confirm("Delete this parking history record?")) return;
+            await api("DELETE", `/parkings/${id}`);
+            toast("Parking record deleted");
+            await load();
+          } else if (action === "demo-data") {
+            if (state.slots.length || state.vehicles.length)
+              return toast(
+                "Demo data can only be loaded into an empty project.",
+                true,
+              );
+            if (
+              !confirm(
+                "Add example zones, slots, vehicles and parking sessions?",
+              )
+            )
+              return;
+            const za = await api("POST", "/zones", {
+              name: "Zone A",
+              note: "Ground floor",
+            });
+            const zb = await api("POST", "/zones", {
+              name: "Zone B",
+              note: "First floor",
+            });
+            for (const name of [
+              "A-01",
+              "A-02",
+              "A-03",
+              "A-04",
+              "A-05",
+              "A-06",
+              "B-01",
+              "B-02",
+              "B-03",
+              "B-04",
+              "B-05",
+              "B-06",
+            ])
+              await api("POST", "/slots", {
+                name,
+                zoneId: name.startsWith("A") ? za.id : zb.id,
+              });
+            for (const [name, phone] of [
+              ["Toyota Camry · 2A-1234", "012 345 678"],
+              ["Honda Civic · 1B-5521", "098 765 432"],
+              ["Ford Ranger · 3C-9087", "077 112 233"],
+              ["Hyundai Tucson · 2B-6688", "096 333 221"],
+            ])
+              await api("POST", "/vehicles", { name, phone });
+            await api("POST", "/parkings", { itemId: 1, personId: 1 });
+            await api("POST", "/parkings", { itemId: 7, personId: 2 });
+            toast("Demo parking data created");
+            await load();
+          } else if (action === "export") exportCsv();
+          else if (action === "print") window.print();
+          else if (action === "refresh") await load();
+        } catch (err) {
+          toast(err.message, true);
+        }
+      });
+      document.addEventListener("input", (e) => {
+        if (e.target.matches("[data-search]")) {
+          const q = e.target.value.toLowerCase().trim();
+          $$("[data-search-row]").forEach(
+            (r) => (r.hidden = !r.dataset.searchRow.includes(q)),
+          );
+        }
+      });
+      $("#globalSearch").addEventListener("keydown", (e) => {
+        if (e.key !== "Enter") return;
+        const q = e.target.value.toLowerCase().trim();
+        if (!q) return;
+        const inVehicles = state.vehicles.some((v) =>
+          v.name.toLowerCase().includes(q),
+        );
+        const inSlots = state.slots.some((v) =>
+          v.name.toLowerCase().includes(q),
+        );
+        if (inVehicles || inSlots) {
+          state.page = inVehicles ? "vehicles" : "slots";
+          render();
+          const box = $("[data-search]");
+          if (box) {
+            box.value = q;
+            box.dispatchEvent(new Event("input"));
+          }
+        } else toast("No matching vehicle or parking slot found");
+      });
+      $("#refreshBtn").addEventListener("click", load);
+      $("#menuBtn").addEventListener("click", () =>
+        $("#sidebar").classList.toggle("open"),
+      );
+      $("#modalClose").addEventListener("click", () => $("#modal").close());
+      $("#modalCancel").addEventListener("click", () => $("#modal").close());
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") $("#sidebar").classList.remove("open");
+      });
+      load();
+      setInterval(() => {
+        if (state.online) load();
+      }, 30000);
+    </script>
+  </body>
+</html>
