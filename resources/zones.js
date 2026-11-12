@@ -99,7 +99,10 @@ async function handle(req, res, parts, body) {
       bus.emit('updated', { resource: NAME, id });
       return send(res, 200, list[index]);
     }
-
+    // DELETE: refuse if any slot still belongs to this zone
+    const slots = require('./slots'); // required here to avoid a circular import
+    const inUse = (await slots.load()).some((s) => s.zoneId === id);
+    if (inUse) throw new HttpError(409, 'This zone still has parking slots. Move or delete them first.');
     list.splice(index, 1); // DELETE
     await save(list);
     bus.emit('deleted', { resource: NAME, id });
@@ -109,4 +112,4 @@ async function handle(req, res, parts, body) {
   throw new HttpError(404, 'Not found');
 }
 
-module.exports = { path: '/' + NAME, handle, findById };
+module.exports = { path: '/' + NAME, handle, findById, load };
